@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="b1">content</div>
+    <!--注释-->
+    <p></p>
+    <span></span>
+</div>
+<script>
+    /*
+        DOM
+        Document Object Model
+
+        * parentNode 返回父节点  没有兼容性问题 !importent
+        * offsetParent 返回定义父级
+        *
+        *
+
+        * children 返回元素节点
+        nodeType 元素节点 1 文本节点 3
+        nodeName 返回节点名称
+        tagName 返回元素节点名称(DIV)
+
+        * setAttribute("asd","asd");//操作非法的自定义属性,不操作合法的自定义属性
+        removeAttribute
+        了解如下
+        firstChild 等价于 childNodes[0]
+        firstElementChild 只兼容主流浏览器
+        lastChild 最后一个
+        nextSibling 返回下一个兄弟节点 兼容性同 firstChild
+        nextElementSibling返回下一个兄弟元素节点
+        firstElementChild 一个尿性
+        previousSibling返回后一个兄弟节点
+        previousElementSibling 返回前一个元素节点
+
+        childElementCount 返回子元素节点的个数
+     */
+    const box = document.getElementById('box');
+
+    console.log(box.childNodes[2].nodeType);
+
+    console.log(box.children);
+
+    console.log(box.nodeType);
+
+    box.setAttribute("asd",'assd');//标签里的自定义属性
+
+    box.asd = "asd";// JS对象的自定义属性
+
+    console.log(box.asd); //返回asd而并非assd
+
+    box.appendChild();
+    box.removeChild()//父级删除子集
+
+
+</script>
+</body>
+</html>

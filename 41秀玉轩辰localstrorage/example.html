@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>40-js</title>
+    <style>
+        #box {
+            width: 500px;
+        }
+
+        #ipt {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        #list li {
+            border-bottom: 1px solid #ccc;
+            height: 30px;
+            line-height: 30px;
+            margin: 1px;
+
+        }
+
+        #list li span {
+            padding: 0 10px;
+            background: #ddd;
+            float: right;
+            cursor: pointer;
+            color: red;
+        }
+
+        #list li.done {
+            color: #ccc;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+<h2>待办事项</h2>
+<div id="box">
+    <input type="text" placeholder="输入事件，回车确认" id="ipt">
+    <ul id='list'>
+        <!-- <li class='done'>吃饭睡觉打豆豆<span>X</span></li> -->
+    </ul>
+</div>
+<script>
+    /*
+    todolist:
+    [
+      {
+        content: "内容1",
+        done: true
+      },
+      {
+        content: "内容2",
+        done: false
+      },
+
+    ] */
+
+
+    const ipt = document.getElementById("ipt")
+    const list = document.getElementById("list")
+    const data = localStorage.getItem("todolist")
+
+
+    if(data === null){
+        localStorage.setItem("todolist", "[]")
+    }else{
+        JSON.parse(data).forEach((v, i, self) => {
+            list.innerHTML += `<li class=${v.done ? "done" : ""}>${v.content}<span>X</span></li>`
+        })
+    }
+
+    // 回车添加
+    ipt.onkeyup = function (e) {
+        // 判断 键盘的键值  不是回车就return
+        if(e.keyCode !== 13)return
+
+        // 以下就是按了回车键
+
+        const content = this.value.trim();
+        // 没有内容  啥都不干
+        if(!content)return;
+        // 再以下就是不仅按了回车，同时还有数据
+        const data = JSON.parse(localStorage.getItem("todolist"))
+
+        // 更新页面
+        list.innerHTML += `<li>${content}<span>X</span></li>`
+        // 更新本地存储库
+
+        data.push({
+            content,
+            done: false
+        });
+
+        // 存data
+        localStorage.setItem("todolist", JSON.stringify(data))
+
+        // 清空数据框
+        this.value = ""
+    };
+
+    // X 的事件
+    list.addEventListener("click", e => {
+        const that = e.target;
+        const data = JSON.parse(localStorage.getItem("todolist"))
+        // 先阻止冒泡
+        e.stopPropagation();
+
+        const tagName = that.tagName.toLowerCase()
+
+        switch (tagName) {
+            case 'span':
+                data.forEach(function(v, i, self){
+                    if(this === list.children[i]){
+                        list.removeChild(this);
+                        self.splice(i, 1)
+                    }
+                }, that.parentNode/*forEach回调函数的this指向*/);
+                break;
+            case 'li':
+                data.forEach(function(v, i, self){
+                    if(that === list.children[i]){
+                        v.done = !v.done;
+                        that.classList.toggle("done")
+                    }
+                });
+                break;
+            // 没有default
+        }
+        localStorage.setItem('todolist', JSON.stringify(data))
+    })
+
+
+
+</script>
+</body>
+</html>

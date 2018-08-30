@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft yahei", serif;
+        }
+
+        li {
+            list-style-type: none;
+        }
+        .red {
+            background-color: red;
+        }
+        .blue {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h2 v-text="msg"></h2>
+    <!--<h2 :class="r">{{msg}}</h2>&lt;!&ndash; v-bind:class可以简写为:class &ndash;&gt;-->
+    <!--<h2 :class="{blue:isBlue}">{{msg}}</h2>-->
+    <!--<h2 :class="{r , red}">{{msg}}</h2>-->
+    <!--<h2 :class="[r, b]">绑定数组</h2>-->
+    <!--<h2 :class="[r, b]">绑定数组</h2>-->
+    <!--<h2 :class="isBlue?r : b">三元</h2>-->
+    <!--<h2 :style="styleObj">style</h2>-->
+    <div v-pre="">{{msg}}</div>
+    <div v-cloak>{{msg}} 不会显示知道编译结束</div>
+    <div v-once>{{msg}}</div><!-- 只渲染一次 -->
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            msg: 'v-bind',
+            num: 0,
+            b: 'blue',
+            r: 'red',
+            isBlue:true,
+            red: true,
+            styleObj:{
+                color: 'yellow',
+                border: '1px solid red'
+            },
+
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        #wrap {
+            position: absolute;
+            right: 0;
+            left: 0;
+            overflow: hidden;
+            width: 600px;
+            height: 350px;
+            margin: 50px auto;
+            border: 2px solid #E9E9E9;
+        }
+        #banner{
+            position: absolute;
+            width: 100%;
+        }
+        #sidebar {
+            position: absolute;
+            z-index: 999;
+            right: 0;
+            width: 20px;
+            height: 100%;
+            background-color: rgba(0,0,0,.5);
+        }
+        #slide {
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            background-color: #eeeeee;
+            cursor: pointer;
+        }
+        #banner img {
+            display: block;
+            width: 600px;
+            height: 350px;
+        }
+
+    </style>
+</head>
+<body style="height: 3000px;">
+    <div id="wrap">
+        <div id="banner">
+            <img src="images/01.jpg" alt="">
+            <img src="images/02.png" alt="">
+            <img src="images/03.jpg" alt="">
+            <img src="images/08.jpg" alt="">
+            <img src="images/05.jpg" alt="">
+            <img src="images/06.png" alt="">
+            <img src="images/07.png" alt="">
+            <img src="images/09.png" alt="">
+            <img src="images/04.png" alt="">
+        </div>
+        <div id="sidebar">
+            <div id="slide"></div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+
+    'use strict';
+
+    const oBanner = document.getElementById('banner'),
+          oSlide = document.getElementById('slide'),
+          oWrap = document.getElementById('wrap');
+    var type = "mousewheel";
+        oWrap.addEventListener("mouseenter", function(){
+            if (document.onmousewheel === undefined) type = "DOMMouseScroll"
+            oWrap.addEventListener(type,function(e){
+                e = e || window.event;
+                e.preventDefault() || (e.returnValue = false);//阻止默认事件的发生
+
+                let Y_ = (e.wheelDelta / 120) || (e.detail / -3);//获取滚动值
+                let sTop_1= oSlide.offsetTop;//获取滚动条的定位
+                let height_1 = oWrap.clientHeight - oSlide.clientHeight;//获取滚动条可滚动得距离
+                let height_2 = oBanner.clientHeight - oWrap.clientHeight;//获取图片的高度
+
+                if (sTop_1 >= 0 && sTop_1 <= height_1) {
+                    sTop_1 -= Y_;
+                } else {
+                    // alert("到头了,滚个卵子");
+                    // sTop_1 = Math.min(sTop_1, height_1);
+                    // sTop_1 = Math.max(0, sTop_1);
+                    if (sTop_1>height_1){
+                        sTop_1 = height_1;
+                    } else if (sTop_1 < 0) {
+                        sTop_1 = 0;
+                    }
+                }
+                let sTop_2 = height_2/height_1*sTop_1;
+                oSlide.style.top = sTop_1 +"px";
+                oBanner.style.top = -sTop_2 + "px";
+            })
+        });
+        //滚轮监听事件
+
+        oSlide.onmousedown = function (e) {
+
+            e = e || window.event;
+            let down_Y = e.clientY;//获取初期鼠标位置
+            let down_Top = oSlide.offsetTop;//获取初期定位
+            document.onmousemove = function (e) {
+                let move_Y = e.clientY;
+                let Y_ = move_Y - down_Y;
+                let height_1 = oWrap.clientHeight - oSlide.clientHeight;//获取滚动条可滚动得距离
+                let height_2 = oBanner.clientHeight - oWrap.clientHeight;//获取图片的高度
+                let Top = down_Top + Y_;
+                if ( Top >= 0 && Top <= height_1) {
+                    oSlide.style.top = Top +"px";
+                    oBanner.style.top = -Top*(height_2/height_1) + "px";
+                } else {
+                    // alert("到头了,滚个卵子");
+                    // sTop_1 = Math.min(sTop_1, height_1);
+                    // sTop_1 = Math.max(0, sTop_1);
+                    if (Top>height_1){
+                        Top = height_1;
+                    } else if ((down_Top + Y_) < 0) {
+                        Top = 0;
+                    }
+                }
+
+            }
+        };
+
+        document.onmouseup = function () {
+            document.onmousemove = null;
+        };
+        //鼠标监听事件
+        document.addEventListener("keypress",function(e){
+            e = e || window.event;
+
+            if (e && e.keyCode === 72){
+                console.log("键盘按下");
+            }
+
+        })
+        //键盘监听事件,未完成
+
+
+
+</script>
+</html>

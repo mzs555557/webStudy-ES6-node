@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        #first{
+            position: relative;
+            height: 305px;
+        }
+        #second{
+            position: relative;
+            height: 305px;
+        }
+        div{
+            position: absolute;
+            width: 75px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<section id="first">
+</section>
+<hr/>
+<section id="second">
+
+</section>
+<hr/>
+<script type="text/javascript">
+    var j=0,
+        oFirst = document.getElementById('first'),
+        oSecond = document.getElementById('second'),
+        aDivsF = oFirst.getElementsByTagName('div'),
+        aDivsS = oSecond.getElementsByTagName('div')
+    ;
+
+    for (var i=0;i<10;i++){
+        for (var k=0;k<9; k++){
+            if( k<9-i){
+                var result1 = (i+k+1)*(i+1);
+                oFirst.innerHTML +="<div>"+(k+i+1)+"*"+(i+1)+"="+result1+"</div>";
+                aDivsF[j].style.top=35*i+'px';
+                aDivsF[j].style.left=80*k+'px';
+                j++;
+            }
+        }
+        oFirst.innerHTML += "<br/>"
+    }
+
+    j=0;
+
+    for (var m=0;i<10;i++){
+        for (var n=0;k<9; k++){
+            if( k<9-i){
+                var result2 = (m+n+1)*(m+1);
+                oSecond.innerHTML +="<div>"+(m+n+1)+"*"+(m+1)+"="+result2+"</div>";
+                aDivsS[j].style.top=35*m+'px';
+                aDivsS[j].style.left=80*n+'px';
+                j++;
+            }
+        }
+        oSecond.innerHTML += "<br/>"
+    }
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+</div>
+<script>
+    var oBox = document.getElementById('box'),
+        aP = oBox.getElementsByTagName('p');
+
+
+
+    setInterval(function(){
+        var date = new Date(),
+            utc = date.getTime() +date.getTimezoneOffset()*60*1000;
+        var wordArr = [
+            utc + 1000*60*60*2,
+            utc + 1000*60*60*7,
+            utc - 1000*60*60*8,
+            utc - 1000*60*60*3
+
+        ];
+        for (var i = 0 , len = aP.length; i < len; i++){
+            aP[i].innerHTML = getTime(wordArr[i]);
+        }
+        function getTime(time){
+            var timeArr = ["周日","周一","周二","周三","周四","周五","周六"];
+            var date = new Date(time),
+                YY = date.getFullYear(),
+                MM = date.getMonth()+1,
+                DD = date.getDate(),
+                HH = date.getHours(),
+                ww = date.getDay(),
+                mm = date.getMinutes(),
+                ss = date.getSeconds();
+            var str = Addzero(YY) + "年" + Addzero(MM) + "月" + Addzero(DD) + "日" + timeArr[ww] + Addzero(HH) +":" + Addzero(mm) +":"+Addzero(ss);
+            return str;
+        }
+    },1000);
+    function Addzero(i){
+        return i<10?'0'+i:i;
+    }
+</script>
+
+
+</body>
+</html>

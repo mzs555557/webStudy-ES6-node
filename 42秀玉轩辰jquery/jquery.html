@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        div {
+            width: 50px;
+            height: 50px;
+            background-color: #C6A577;
+        }
+    </style>
+</head>
+<body>
+<!--<div id="box"></div>-->
+<!--<form action="" class="form">-->
+<!--<ul>-->
+    <!--<li id="foo">foo</li>-->
+    <!--<li id="bar">bar</li>-->
+    <!--<li id="baz">baz</li>-->
+<!--</ul>-->
+<!--<table border="1">-->
+    <!--<tr><td>TD #0</td><td>TD #1</td><td>TD #2</td></tr>-->
+    <!--<tr><td>TD #3</td><td>TD #4</td><td>TD #5</td></tr>-->
+    <!--<tr><td>TD #6</td><td>TD #7</td><td>TD #8</td></tr>-->
+<!--</table>-->
+<div id="box"></div>
+<script>
+    /*
+        jquery
+    */
+    // const div = document.getElementById('div');
+    // const $div = $(".box");
+    // console.log($div);
+    // console.log();
+    // $("#box").removeAttr('data-fy');
+    // $("#box").addClass('nide');
+    // // toggle切换
+    // $("#box").text("123");
+    // $("#box").css({
+    //     position: 'relative',
+    //     height:200,
+    //     top : 50,
+    //     left : 30
+    // });
+    // $("#box").offset({
+    //
+    // });
+    // $("#box").position(如果没有定位父级则默认到文档)相对!!定位父级的偏移
+    // $(":root"||"document"||"window").scrollTop;
+    // $("#box").height()获取样式高 获取style-height 与margin padding border等无关
+    // $("#box").innerHeight //style-height + 竖直方向的padding
+    //outerWidth border +padding + style
+    // console.log();
+    //children
+    /* ready
+        on
+        off
+        one
+        trigger
+
+
+    //  */
+    // $("div > p");
+    // $(document.body).css("background","#E9E9E9");
+    // $("input:radio",document.forms[0]);
+    // // $("div",xml.responseXML);
+    // $("<div></div>");
+    // $("input").attr("type","checkbox");
+    // $("<div></div>",{
+    //     type: "text",
+    //     val : "Test",
+    //     focusin : function () {
+    //         $(this).addClass("active");
+    //     },
+    //     focusout: function () {
+    //         $(this).removeClass("active");
+    //     }
+    // }).appendTo("form");
+    // console.log($("form").css({
+    //     height: 500,
+    //     backgroundColor: '#111111',
+    // }));
+    // $(document).ready();
+    // $(function () {
+    //     // 文档就绪
+    // });
+    // jQuery(function($){
+    //
+    // });
+    // jQuery.readyException = function (error) {
+    //     console.error(error);
+    // };
+    // $("img").each(function (i) {
+    //     this.src = "test" + i + ".jpg";
+    // });
+    // $("img").each(function () {
+    //     $(this).toggleClass("example");
+    // });
+    // $("button").addClass("btn");
+    // $(".btn").click(function () {
+    //     $("div").each(function (index , doEle) {
+    //         $(doEle).css("background" , 'yellow');
+    //         if ($(this).is("#stop")){
+    //             $("span").text("stopped at div index #" + index);
+    //             return false;
+    //         }
+    //     })
+    // })
+    // console.log($("div").length);
+    // $("ul").append("<li>" + $("ul").selector + "</li>")
+    // .append("<li>" + $("ul li").selector + "</li>")
+    // .append("<li>" + $("div#foo ul:not([class])").selector + "</li>");
+    // $("ul")
+    //     .append("<li>" + $("ul").context + "</li>")
+    //     .append("<li>" + $("ul", document.body).context.nodeName + "</li>");
+    // $("div").get(0);
+    // jQuery.extend ({
+    //     min : function (a,b) {
+    //         return a < b ? a : b;
+    //     },
+    //     max : function (a,b) {
+    //         return a > b ? a : b;
+    //     }
+    //
+    // })
+    // $('.foo').toggleClass(function () {
+    //     if ($(this).parent().is(".bar")){
+    //         return "happy";
+    //     } else {
+    //         return "sad";
+    //     }
+    // });
+    // $.ajax({
+    //     url: 'jquery.html',
+    //     context : document.body,
+    //     success : function () {
+    //         $(this).addClass("done");
+    //     }
+    // });
+    // function fn(data,type) {
+    //     return data;
+    // }
+    //
+    // $.ajax({
+    //     url:'jquery.html',
+    //     cache:false,
+    //     success : function (html) {
+    //         $("#results").append(html);
+    //     }
+    // });
+    // $.getJSON('http://')
+    // jQuery.getScript("http://dev.jquery.com/view/trunk/plugins/color/jquery.color.js", function(){
+    //     $("#go").click(function(){
+    //         $(".block").animate( { backgroundColor: 'pink' }, 1000)
+    //             .animate( { backgroundColor: 'blue' }, 1000);
+    //     });
+    // });
+    // let listItem = $("li:gt(0)");
+    // alert( "Index: " + $( "li" ).index( listItem ) );
+    //$( "td:gt(6)" ).css( "backgroundColor", "yellow" );
+    //$( "td:gt(3)" ).css( "color", "red" );
+    $("box").animate({
+        width : 500,
+        height : 500
+    },1000,()=>{
+        // console.log("over");
+        $("box").stop(true , true)
+    });
+    /*
+        stop()
+        两个参数均为布尔型值
+        第一: 是否清空动画队列
+        第二: 当前队列否直接到达目标值,根据true false 决定是否跳转到目标值
+        finish : 对象整个动画队列瞬间完成
+        JQuery 扩展到实例原型的方法
+            jQuery.fn.extend
+            $.fn.extend();
+     */
+
+    function fn() {
+        console.dir($(arguments).toArray());
+    }
+
+    $(".box").click(()=>{
+        console.log(1);
+    });
+    const $box = $box1.clone();
+
+    $(".box").method();
+    $.type();
+    $.each();
+    //扩展大圆形上
+    $.fn.extend ({
+        method : fengyu,
+
+    });
+    /*
+    $.extend({
+        fy : function () {
+            console.log(1);
+        }
+    })
+    */
+    const obj = {
+        'a' :2,
+        'b': 3
+    };
+
+    const oj = {
+        'c' : 2,
+        'd' : 4
+    };
+
+
+    $(function (){
+        const $pic = $(".pic li"),
+              $tab = $(".tab li");
+
+    });
+
+
+</script>
+</body>
+</html>

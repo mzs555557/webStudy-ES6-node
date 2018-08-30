@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/html5实现的中国象棋游戏/js/AI.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/html5实现的中国象棋游戏/js/bill.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/html5实现的中国象棋游戏/js/common.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/html5实现的中国象棋游戏/js/gambit.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/html5实现的中国象棋游戏/js/play.js" charset="GBK" />
+  </component>
+</project>

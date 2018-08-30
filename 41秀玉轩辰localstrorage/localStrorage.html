@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        h1{
+            font-size: 30px;
+
+        }
+        #box {
+            width: 500px;
+        }
+        #ipt {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            outline: none;
+            box-sizing: border-box;
+        }
+        #list li {
+            border-bottom: 1px solid red;
+            height: 30px;
+            line-height: 30px;
+            margin: 1px;
+        }
+        #list li span {
+            padding: 0 10px;
+            background: #E9E9E9;
+            float: right;
+            cursor: pointer;
+            color: red;
+        }
+        #list li.done{
+            color: #E9E9E9;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+<h1>待办事项</h1>
+<div id="box">
+    <label for="ipt"></label><input type="text" id="ipt">
+    <ul id="list"></ul>
+</div>
+<script>
+    /*
+        todoLIst
+
+    const ipt = document.getElementById('ipt');
+    const list = document.getElementById("list");
+    const data = localStorage.getItem('todoList');
+
+    if (localStorage.getItem("todoList") ===null) {
+        localStorage.setItem("todoList","[]")
+    } else {
+        JSON.parse(data).forEach((v,i,self) => {
+            list.innerHTML += `<li class="${v.done? 'done':''}">${v.content}<span>X</span></li>`;
+        })
+    }
+
+    ipt.onkeydown = function(e){
+        //判断键值
+        if(e.keyCode === 13)return false;
+        const val = this.value.trim();
+    };
+    localStorage.setItem('mazong','dashuanbi');
+    localStorage.clear();
+
+    opt.forEach((v,i)=>{
+        console.log(v, i);
+    })
+    */
+    // let opt = [1,2,3,4,56];
+    // console.log(opt.every((v) => {}));
+
+    const list = document.getElementById("list"),
+          ipt = document.getElementById("ipt"),
+          data = localStorage.getItem("todoList");
+    if (data === null) {
+        localStorage.setItem("todoList","[]")
+    } else {
+        JSON.parse(data).forEach((v,i,self)=>{
+            list.innerHTML += `<li class="${v.done ? "done" : ""}">${v.content}<span>X</span></span></li>`;
+        })
+    }
+    ipt.onkeyup = function(e) {//!!!!!!箭头函数没有指向的问题
+        if ( e.keyCode !== 13 ) return;
+        const  content = this.value.trim();
+        //按下键
+        if (!content) return;
+        const data = JSON.parse(localStorage.getItem("todoList"));
+        list.innerHTML += `<li>${content}<span>X</span></li>`;
+        data.push({
+            content,
+            done : false
+        });
+        localStorage.setItem("todoList" , JSON.stringify(data));
+        this.value = "";
+    };
+    //e.target 在事件代理是会被用到
+    list.addEventListener("click" , function (e) {
+        const that = e.target;
+        const data = localStorage.getItem("todoList");
+        e.stopPropagation();
+
+        const tagName = that.tagName.toLowerCase();
+
+        switch (tagName) {
+            case 'li' :
+                JSON.parse(data).forEach(function(v,i) {
+                   if (that === list.children[i]){
+                        v.done = !v.done;
+                        that.classList.toggle("done");
+                   }
+                });
+            break;
+
+            case 'span' :
+                JSON.parse(data).forEach(function(v,i , self){
+                    if(this === list.children[i]){
+                        list.removeChild(this);
+                        self.splice(i, 1)
+                    }
+                }, that.parentNode);
+                break;
+        }
+        localStorage.setItem('todolist', JSON.stringify(data))
+    });
+
+</script>
+</body>
+</html>

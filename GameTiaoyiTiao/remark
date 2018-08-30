@@ -1,0 +1,15 @@
+
+    function C(){}
+    function D(){}
+    const o = new C();
+    console.log(o instanceof C);
+    console.log(o instanceof D);
+    console.log(o instanceof Object);
+    console.log(C.prototype instanceof Object);
+    C.prototype = {};
+    let o2 = new C();
+
+    console.log(o2 instanceof C);
+
+    let simpleStr = "this is a simple String";
+    console.log(Object.getPrototypeOf(simpleStr));

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft yahei", serif;
+        }
+
+        li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--//数据插入到app作用域下需要用{{变量}}-->
+    {{ abc123 }}
+    <h2 v-text="vText"></h2>
+    <!--引入方式-->
+    <hr>
+    <div>
+        <ul>
+            <li v-for="(key , index) in arr" :key="index">{{key}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="item in sortArr">{{item}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="(item , index) in users" :key="index">name:{{item.name}} age:{{item.age}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="(value , key , index) in userName">{{value}} {{key}} {{index}}</li>
+        </ul>
+        <hr>
+        <h1>{{num}}</h1>
+        <!--双向数据绑定-->
+        <label>
+            <input type="text" v-model="num" @keyup.enter="onEnter" value="键盘事件">
+        </label>
+        <button @click="addition">加分</button>
+        <button @click="substration">减分</button>
+        <hr>
+        <button @keyup="onEnter">键盘</button>
+        <!--v-on简写为@-->
+    </div>
+</div>
+<script src="../js/vue.js">
+</script>
+<script>
+    // mvvm框架
+    new Vue({
+        el: '#app',
+        data: {//请求的原始数据,都会放到data中
+            abc123: 'hello World',
+            vText: '指令变量',
+            arr: [123, 456, 789],
+            msg: 'v-on',
+            users: [
+                {name: 'mzs', age: 18},
+                {name: 'lg', age: 18}
+            ],
+            userName: {
+                name: 'wula',
+                age: 18,
+                sex: '男'
+            },
+            num : 0
+        },
+        computed: {
+            sortArr: function () {
+                return this.arr.sort(function (a, b) {
+                    return a - b;//从大到小
+                    // return a - b;//从小到大
+                })
+            }
+        },
+        methods: {
+            addition(){
+                this.num++;
+            },
+            substration(){
+                this.num--;
+            },
+            onEnter(){
+                this.num++;
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

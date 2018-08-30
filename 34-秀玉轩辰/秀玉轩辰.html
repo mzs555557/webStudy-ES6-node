@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>34</title>
+    <style>
+
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        /*#box {*/
+            /*position: absolute;*/
+            /*top: 30px;*/
+            /*left: 50px;*/
+            /*width: 100px;*/
+            /*height: 100px;*/
+            /*padding: 30px;*/
+            /*border: 5px solid red;*/
+            /*background-color: #ff3b5b;*/
+        /*}*/
+    </style>
+
+</head>
+<body style="height: 2000px">
+<script type="text/javascript">
+
+    /*
+            scrollIntoView() 将元素滚动到可视区域
+
+            getBoundingClientRect()
+                获取对象到可视区左上角的距离(除了width height)
+        跟标签宽高相关的属性:
+            offsetWidth: width+左右padding+borderWidth
+
+            clientWidth: width + 左右padding
+
+            offsetTop 获取当前元素到定位父节点的距离 **只能获得左方向与上方向
+
+            window.innerHeight 可视化区域内的高度
+
+            document.documentElement.clientWidth 获取文档可视区域宽度
+
+            scrollWidth 超出不隐藏 content width === width + 左右padding
+                        超出隐藏 content width ===481 + 左右padding !有差别
+            scrollTop document.documentElement.scrollTop/scrollLeft //返回文档滚动的top方向与left方向的距离
+
+
+
+    console.log(document.body.offsetWidth);
+    console.log(window.innerHeight);*/
+
+   /* const oBox =document.getElementById("box");
+    console.log(box.getBoundingClientRect());
+    setInterval(function () {
+        box.scrollIntoView({block:"end",behavior:"smooth" })
+    },1000/13)
+    */
+
+    /*
+        建站:
+        1. 域名 29 55 一年
+        2. 空间 99 199 299 399
+        3. 程序
+        4. 主题 html
+
+        服务器 一台电脑
+        空间 电脑文件夹
+
+        远程管理空间
+        1. 网页版的 控制面板
+        2 . 软件管理 -(ftp)
+        ftp 三个账号密码
+        地址:
+        Ftp 111.67.195.197
+        Ftp 账号
+
+        数据库信息
+        数据库地址
+
+        开始建站:
+        1. 准备ftp账号密码
+        2. 准备空间
+        3. 准备域名
+        4. 下载建站程序
+        5. 压缩建站文件 传至根目录中
+        6.
+     */
+
+   /* function* f00(x) {
+        var y = 2 * (yield (x + 1));
+        var z = yield (y / 3);
+        return (x + y +z);
+    }
+    var a = f00(5);
+    console.log(a.next());
+    console.log(a.next());
+    console.log(a.next());
+    var b = f00(5);
+    console.log(b.next());
+    console.log(b.next(18));
+    console.log(b.next(19));
+
+
+   function* fn() {
+       yield 'a';
+       yield 'b';
+   }
+   function* bar() {
+       yield 'x';
+       yield* fn();
+       yield 'y';
+   }
+   for (let v of bar()){
+       console.log(v);
+   }
+   */
+   async function fn() {
+    /*const res = await new Promise(resolve => {
+        setTimeout(()=>{
+            console.log("异步操作完成");
+            resolve("异步一要返回的数据");
+        },100);
+    });
+       console.log(res);
+    */
+
+    await setTimeout(function(){console.log("time");},100);
+       console.log("end");
+   }
+
+   function resolveAfter2Seconds(){
+       return new Promise(resolve =>{
+           setTimeout(()=>{
+               resolve("resolved");
+           },2000)
+       })
+   }
+   async function asyncCall(){
+       console.log("calling");
+       // const result = await resolveAfter2Seconds();
+       console.log(await resolveAfter2Seconds());
+   }
+    asyncCall();
+
+   async function fn(){
+       const id = await new Promise(resolve => {
+           resolve("sad");
+       });
+       console.log(id);
+   }
+
+   /*
+        export 用于规定模块的对外接口 不能导出值
+        import 输入其他模块的内容
+    */
+   export var firstName = "Lasda";//动态绑定,即通过接口获得动态值
+   export var lastName = "asd";
+
+
+</script>
+</body>
+</html>

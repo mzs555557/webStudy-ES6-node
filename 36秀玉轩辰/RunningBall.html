@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="icon" href="" type="image/x-icon">
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        div{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    /*function modifyText() {
+        var t2 = document.getElementById("t2");
+        if (t2.firstChild.nodeValue === "three") {
+            t2.firstChild.nodeValue = "two";
+        } else {
+            t2.firstChild.nodeValue = "three";
+        }
+    }
+
+    // 为table添加事件监听器
+    var el = document.getElementById("outside");
+    el.addEventListener("click", modifyText, false);
+
+    function modifyText(new_text) {
+        var t2 = document.getElementById("t2");
+        t2.firstChild.nodeValue = new_text;
+    }
+
+    // 为table对象添加事件监听器
+    var el = document.getElementById("outside");
+    el.addEventListener("click", function(){modifyText("four")}, false);
+
+    let speed_x = 3,
+        speed_y = 3,
+        Max_x = document.documentElement.clientWidth - box.offsetWidth,
+        Max_y = document.documentElement.clientHeight - box.offsetHeight;
+
+
+
+    let sTop = box.offsetTop,
+        sLeft = box.offsetLeft;
+
+    setInterval(run,100/13);
+    function run(){
+        window.onresize = () =>{
+            Max_x = document.documentElement.clientWidth - box.offsetWidth;
+            Max_y = document.documentElement.clientHeight - box.offsetHeight;
+        };
+        sLeft += speed_x;
+        sTop += speed_y;
+
+        if (sTop <= 0 || sTop >= Max_y) {
+            speed_y = -speed_y;
+            sTop = Math.max(0 , sTop);
+            sTop = Math.min(Max_y, sTop);
+        }
+        if (sLeft <= 0 || sLeft >= Max_x) {
+            speed_x = -speed_x;
+
+            sLeft = Math.max(0 , sLeft);
+            sLeft = Math.min(Max_x, sLeft);
+        }
+
+        box.style.top = sTop + 'px';
+        box.style.left = sLeft + 'px';
+    }
+    */
+    let balls = document.getElementsByClassName('ball');
+
+    document.onclick = function() {
+        createBall({
+            r: randomNum(80, 120),
+            //生成随机半径
+            top: 0,
+            left: 0,
+            //生成随机定位
+            spaceX: randomNum(5, 10),
+            spaceY: randomNum(5, 10),
+            //生成随机速度
+            background: randomColor1(),
+            //生成随机色
+            borderRadius: '50%'
+            // 生成圆球
+        });
+    };
+
+    function setStyle(ele , arr) {
+        const style_arr = ['width' , 'height' , 'left' , 'top' ];// 属性
+        for (let key in arr) {
+            if (style_arr.indexOf(key) !== -1) {
+                // console.log(style_arr[key]);
+                ele.style[key] = arr[key] + 'px';
+            } else {
+                ele.style[key] = arr[key];
+            }
+        }
+
+    }
+    //检测小球是否碰撞
+    (function checkBall() {
+        //检测小球与小球之间的碰撞
+        for (let i = 0; i < balls.length ; i++  ){
+            //前边碰的球
+            let thisBall = balls[i];
+            for (let j = i +1; j < balls.length ;j++){
+                //后边碰撞的球
+                let thatBall = balls[j];
+
+                if (thatBall && judgeBall(thisBall , thatBall)){//判断小球碰撞及存在与否
+
+
+
+                    [
+                        thisBall.ballOpction.spaceX,
+                        thatBall.ballOpction.spaceX
+                    ]=[
+                        thatBall.ballOpction.spaceX,
+                        thisBall.ballOpction.spaceX
+                    ];
+                    [   thisBall.ballOpction.spaceY,
+                        thatBall.ballOpction.spaceY
+                    ]=[
+                        thatBall.ballOpction.spaceY,
+                        thisBall.ballOpction.spaceY
+                    ];
+                }
+            }
+        }
+        // 判断小球碰撞
+
+        requestAnimationFrame(checkBall);
+    })();
+
+    function judgeBall(thisBall , thatBall) {
+        let a = (thisBall.ballOpction.top + thisBall.ballOpction.r/2) - (thatBall.ballOpction.top + thatBall.ballOpction.r/2),
+            b = (thisBall.ballOpction.left + thisBall.ballOpction.r/2) - (thatBall.ballOpction.left + thatBall.ballOpction.r/2);
+        let c = Math.sqrt(a*a + b*b);
+        return  c <= thisBall.ballOpction.r/2 + thatBall.ballOpction.r/2;
+    }
+    //生成小球
+    function createBall(param) {
+        let oBall = document.createElement("div");
+        oBall.className = "ball";
+        oBall.ballOpction = param;
+        setStyle(oBall ,{
+            width: param.r,
+            height: param.r,
+            background: param.background,
+            borderRadius: param.borderRadius
+        });
+
+        document.body.appendChild(oBall);
+
+        (function fn(){
+            param.top += param.spaceY;
+            param.left += param.spaceX;
+            //进行定位值的变化
+            let Max_x = document.documentElement.clientWidth - param.r,
+                Max_y = document.documentElement.clientHeight - param.r;
+                //获取窗口的大小
+            if (param.top < 0 || param.top > Max_y ) {
+                param.spaceY /= -1;
+                param.top = Math.min(param.top , Max_y);
+                param.top = Math.max(0 , param.top);
+                setStyle(oBall,{
+                    background:randomColor2()
+                })
+            }
+
+            if (param.left < 0 || param.left > Max_x){
+                param.spaceX /= -1;
+                param.left = Math.min(param.left , Max_x);
+                param.left = Math.max(0 , param.left);
+                setStyle(oBall,{
+                    background:randomColor2()
+                })
+            }
+            //对小球的运动范围进行限制
+            setStyle(oBall , {
+               top: param.top,
+               left: param.left
+            });
+            requestAnimationFrame(fn);
+            // console.log(oBall.ballOpction);
+        })();
+    }
+
+    function randomNum(min , max){
+        return parseInt(Math.random()*(max - min + 1) + min);
+    }//生成随机数
+    function randomColor1(){
+        return 'rgb(' + randomNum(0 , 255) + ' ,' + randomNum(0 , 255) + ' ,' +randomNum(0 , 255) + ')'
+    }//生成随机颜色rgb
+    function randomColor2() {
+        let colorNum = parseInt(Math.random()*0xffffff).toString(16),
+            fill = new Array( 7 - colorNum.length);
+        return '#'+ fill.join('0') + colorNum;
+    }//生成随机背景颜色#000
+
+    //json 复杂数据对象类型
+
+</script>
+</body>
+</html>

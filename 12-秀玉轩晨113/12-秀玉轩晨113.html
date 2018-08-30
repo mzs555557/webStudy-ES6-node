@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	*{
+		margin: 0px;
+		padding: 0px;
+		list-style: none;
+	}
+	body{
+		background-color: #fff;
+	}
+	#wrap{
+		width: 700px;
+		height: 600px;
+		margin: 20px auto;
+		border: 2px solid black;
+	}
+	#wrap .shopList{
+		display: flex;
+		width: 100%;
+		height: 19.7%;
+		border-bottom:  1px solid rgba(0,0,0,.5);
+		justify-content: space-around;
+	}
+	#wrap .shopList li{
+		width: 25%;
+		height: 100%;
+		line-height: 7.5em;
+		font-weight: 700;
+		text-align: center;
+		
+	}
+	#wrap .shopList .image1{
+		background: url("images/shop1.jpg")  0  0 /100% no-repeat;
+	}
+	#wrap .shopList .image2{
+		background: url("images/shop2.jpg")  0  0 /100% no-repeat;
+	}
+	#wrap .shopList .image3{
+		background: url("images/shop3.jpg")  0  0 /100% no-repeat;
+	}
+	#wrap .shopList .image4{
+		background: url("images/shop4.jpg")  0  0 /100% no-repeat;
+	}
+	#wrap .price , #wrap .countPrice{
+		color: red;
+	}
+	.plusMinus{
+		width: 140px;
+		height: 40px;
+		margin: 18% auto ;
+		line-height: 40px;
+	}
+	.plusMinus p , .plusMinus span{
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		border-radius:3px ;
+		border: 1px solid rgba(0,0,0,.5) ;
+	}
+	.plusMinus span{
+		cursor: pointer;
+	}
+    /*
+
+      上方为单个商品的总价,下面为计算商品的总数量及总价格
+
+    */
+
+    .finalCount {
+        display: flex;
+        border: 1px solid black;
+        justify-content: space-between;
+    }
+</style>
+</head>
+<body>
+    
+	<section id="wrap">
+		<ul class="shopList">
+			<li>商品</li>
+			<li>单价</li>
+			<li>数量</li>
+			<li>小计</li>
+		</ul>
+		<ul class="shopList">
+			<li class="image1"></li>
+			<li class="price">8</li>
+			<li class="number">
+				<div class="plusMinus">
+					<span>-</span>
+					<p>0</p>
+					<span>+</span>
+				</div>	
+			</li>
+			<li class="countPrice">0</li>
+		</ul>
+		<ul class="shopList">
+			<li class="image2"></li>
+			<li class="price">10</li>
+			<li class="number">
+				<div class="plusMinus">
+					<span>-</span>
+					<p>0</p>
+					<span>+</span>
+				</div>	
+			</li>
+			<li class="countPrice">0</li>
+		</ul>
+		<ul class="shopList">
+			<li class="image3"></li>
+			<li class="price">12.5</li>
+			<li class="number">
+				<div class="plusMinus">
+					<span>-</span>
+					<p>0</p>
+					<span>+</span>
+				</div>	
+			</li>
+			<li class="countPrice">0</li>
+		</ul>
+		<ul class="shopList">
+			<li class="image4"></li>
+			<li class="price">23</li>
+			<li class="number">
+				<div class="plusMinus">
+					<span>-</span>
+					<p>0</p>
+					<span>+</span>
+				</div>	
+			</li>
+			<li class="countPrice">0</li>
+		</ul>
+
+        <ul class="shopList finalCount">
+            <li class="total">0</li>
+            <li class="totalPrice">0</li>
+        </ul>
+	</section>
+
+
+    <script type="text/JavaScript">
+    	
+    	var oWrap = document.getElementById('wrap'),
+			aPlusMinus = document.getElementsByClassName('plusMinus'),
+			aPrice = document.getElementsByClassName('price'),
+			aCountPrice = document.getElementsByClassName('countPrice'),
+            oTotal = document.getElementsByClassName('total')[0],
+    	    oTotalPrice = document.getElementsByClassName('totalPrice')[0]
+            // aSpan = aPlusMinus.getElementsByTagName('span'),
+    		// aP = aPlusMinus.getElementsByTagName('p'),
+
+    		;
+    		function fn(){
+    			let num = 0;
+				for(let j = 0;j < aPlusMinus.length;j++){
+					aPlusMinus[j].index = j;
+					aPrice[j].index = j;
+					aCountPrice[j].index = j; 
+					let aSpan = aPlusMinus[j].getElementsByTagName('span'),
+                    	aP = aPlusMinus[j].getElementsByTagName('p')[0]
+
+                    ;
+					aSpan[0].onclick = function (){
+						num++;
+						if (aP.innerHTML<=0) {
+							alert("已为最小")
+						} else{
+                            oTotal.innerHTML--;
+							aP.innerHTML--;
+							aCountPrice[j].innerHTML -= aPrice[j].innerHTML;
+                            oTotalPrice.innerHTML -=aCountPrice[j].innerHTML;
+                        }
+					};
+					aSpan[1].onclick = function (){
+					        oTotal.innerHTML++;
+							aP.innerHTML++;
+							aCountPrice[j].innerHTML = (aPrice[j].innerHTML)*(aP.innerHTML);
+                            oTotalPrice.innerHTML -= -(aPrice[j].innerHTML);
+					};
+					console.log(num);
+
+                }
+
+            }
+            fn();
+
+    </script>
+</body>
+</html>

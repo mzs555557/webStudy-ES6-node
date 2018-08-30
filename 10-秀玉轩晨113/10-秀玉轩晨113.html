@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	*{
+		margin: 0px;
+		padding: 0px;
+
+	}
+	li{
+		list-style: none;
+	}
+	#wrap{
+		width: 300px;
+		height: 400px;
+		margin: 50px auto;
+		border: 2px solid #E9E9E9;
+	}
+	#wrap div{
+		width: 300px;
+		height: 60px;
+	}
+	#wrap p{
+		overflow: hidden;
+		display:  inline-block;
+		width:200px;
+		height: 30px;
+		line-height: 30px;
+		vertical-align: top;
+		border: 1px solid #E9E9E9;
+	}
+	#wrap ul{
+		display: inline-block;
+		float: right;
+		width: 50px;
+		height: 30px;
+		margin-right: 0px;
+		line-height: 30px;
+		text-align: center;
+		vertical-align: top;
+		border: 2px solid #E9E9E9;
+		cursor: pointer;
+	}
+	#wrap div ul li{
+		display: none;
+	}
+	#wrap div ul li.on{
+		display: block;
+	}
+	#wrap ul li:nth-child(1){
+		background-color: #E9E9E9;
+	}
+	#wrap ul li:nth-child(2){
+		color: #fff;
+		background-color: black; 
+	}
+	
+</style>
+</head>
+<body>
+    <div id="wrap">
+    	<div>
+			<p contenteditable=false class="edit"></p>
+	    	<ul class="box">
+	    		<li class="on modify">修改</li>
+	    		<li class="confirm">确认</li>
+	    	</ul>
+		</div>
+
+		<div>
+			<p contenteditable=false class="edit"></p>
+	    	<ul class="box">
+	    		<li class="on modify">修改</li>
+	    		<li class="confirm">确认</li>
+	    	</ul>
+		</div>
+		<div>
+			<p contenteditable=false class="edit"></p>
+	    	<ul class="box">
+	    		<li class="on modify">修改</li>
+	    		<li class="confirm">确认</li>
+	    	</ul>
+		</div>
+
+		<div>
+			<p contenteditable=false class="edit"></p>
+	    	<ul class="box">
+	    		<li class="on modify">修改</li>
+	    		<li class="confirm">确认</li>
+	    	</ul>
+		</div>
+    </div>
+    <script>
+    	var oWrap = document.getElementById('wrap'),
+    		oP = document.getElementsByClassName('edit'),
+    		aUl = document.getElementsByClassName('box'),
+    		aLi1=document.getElementsByClassName('modify'),
+    		aLi2=document.getElementsByClassName('confirm'),
+    		len = aUl.length
+    		;
+    	
+	    		aLi1[0].onclick = function (){
+	    			aLi1[0].className = 'modify';
+	    			aLi2[0].className += ' on';
+	    			oP[0].setAttribute("contenteditable",true);
+	    		};
+	    		aLi2[0].onclick = function (){
+	    			aLi2[0].className = 'confirm';
+	    			aLi1[0].className += ' on';
+	    			oP[0].setAttribute("contenteditable",false);
+	    		};
+	    	
+	    	aLi1[1].onclick = function (){
+	    			aLi1[1].className = 'modify';
+	    			aLi2[1].className += ' on';
+	    			oP[1].setAttribute("contenteditable",true);
+	    		};
+	    		aLi2[1].onclick = function (){
+	    			aLi2[1].className = 'confirm';
+	    			aLi1[1].className += ' on';
+	    			oP[1].setAttribute("contenteditable",false);
+	    		};
+	    		aLi1[2].onclick = function (){
+	    			aLi1[2].className = 'modify';
+	    			aLi2[2].className += ' on';
+	    			oP[2].setAttribute("contenteditable",true);
+	    		};
+	    		aLi2[2].onclick = function (){
+	    			aLi2[2].className = 'confirm';
+	    			aLi1[2].className += ' on';
+	    			oP[2].setAttribute("contenteditable",false);
+	    		};
+	    		aLi1[3].onclick = function (){
+	    			aLi1[3].className = 'modify';
+	    			aLi2[3].className += ' on';
+	    			oP[3].setAttribute("contenteditable",true);
+	    		};
+	    		aLi2[3].onclick = function (){
+	    			aLi2[3].className = 'confirm';
+	    			aLi1[3].className += ' on';
+	    			oP[3].setAttribute("contenteditable",false);
+	    		};
+	    	 
+	    	 // for (var i = 0; i < len; i++) {
+
+	    	 // 	aLi1[i].onclick = function (){
+	    		// 	aLi1[i].className = 'modify';
+	    		// 	aLi2[i].className += ' on';
+	    		// 	oP[i].setAttribute("contenteditable",true);
+	    		// };
+	    		// aLi2[i].onclick = function (){
+	    		// 	aLi2[i].className = 'confirm';
+	    		// 	aLi1[i].className += ' on';
+	    		// 	oP[i].setAttribute("contenteditable",false);
+	    		// };
+	    	 // }
+    </script>
+</body>
+</html>

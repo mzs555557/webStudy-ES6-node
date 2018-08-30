@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>28</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    /*function fn() {
+        this.name = arguments[0];
+    }
+    fn.prototype = {
+        constructor:fn,
+        age:18
+    };
+    new fn();
+    f.prototype 类的原型(给实例提供公有属性)
+    new f()
+    obj = new f() obj 就是f实例
+    原型也是一个对象,有对应类的原型
+    obj._proto_ === f.prototype
+    判断是否在原型上  hasOwnProperty
+
+    instanceOf 用来确定某对象是否在另一对象的原型链上
+
+    const obj = new fn("fy");
+    function fn2(){}
+    console.log(obj.hasOwnProperty("name"));
+    console.log(obj.hasOwnProperty("age"));
+
+    console.log(obj instanceof  fn2)
+
+
+    function Person(name,age1){//类名首字母必须大写
+        this.name = name;
+        this.age1 = age;
+    }
+    Person.prototype = {
+        add(){},
+        sub(){}
+    };
+    const obj = new Person("sda",12);
+
+    class Person2{
+      constructor(name,age){
+          this.name = name;
+          this.age = age;
+      }
+      add(value){
+          alert(value);
+      }
+      sub(value){
+          alert(value);
+      }
+    }
+
+    function P1(opt){
+        this.name = opt.name;
+        this.age = opt.age;
+    }
+    P1.prototype.sayName = function () {
+        alert(this.name);
+    };
+    function P2(opt){
+        //obj2 = this
+        P1.call(this,opt);
+        this.sex = opt.sex;
+    }
+
+      not
+        P2.prototype = P1.prototype;
+        P2.prototype.add = function(){};
+    P2.prototype = new P1();
+    P2.prototype.add = function(){};
+
+    new P2({
+        name: "大帅比",
+        age: "23",
+        sex: "man",
+    })
+    */
+    class Polygon{
+        constructor(height,width){
+            this.name = 'Polygon';
+            this.height = height;
+            this.width = width;
+        }
+        sayName() {
+            console.log('Hi, I am a ', this.name + '.');
+        }
+        sayHistory() {
+            console.log('"Polygon" is derived from the Greek polus (many) ' +
+                'and gonia (angle).');
+        }
+    }
+    let p = new Polygon(300, 400);
+    p.sayName();
+    console.log('The width of this polygon is ' + p.width);
+
+    const MyPoly = class Poly {
+        getPolyName(){
+            console.log('Hi. I was created with a Class expression. My name is ' + Poly.name);
+        }
+    }
+    let inst = new MyPoly();
+    inst.getPolyName();
+
+    class square extends Polygon{
+        constructor(length){
+            super(length,length);
+            this.name = 'Square';
+        }
+        get area(){
+            return this.height * this.width;
+        }
+        set area(value){
+            this.area = value;
+        }
+    }
+    let s = new square(5);
+    s.sayName();
+    console.log('The area of this square is ' + s.area);
+
+    class Rectangle extends Polygon {
+        constructor(height, width) {
+            super(height, width);
+            this.name = 'Rectangle';
+        }
+        // Here, sayName() is a subclassed method which
+        // overrides their superclass method of the same name.
+        sayName() {
+            console.log('Sup! My name is ', this.name + '.');
+            super.sayHistory();
+        }
+    }
+    let r = new Rectangle(50, 60);
+    r.sayName();
+
+    class Triple {
+
+        static triple(n) {
+            n = n || 1;
+            return n * 3;
+        }
+    }
+
+    class BiggerTriple extends Triple {
+        static triple(n) {
+            return super.triple(n) * super.triple(n);
+        }
+    }
+
+    console.log(Triple.triple());
+    console.log(Triple.triple(6));
+    console.log(BiggerTriple.triple(3));
+
+
+</script>
+</body>
+</html>

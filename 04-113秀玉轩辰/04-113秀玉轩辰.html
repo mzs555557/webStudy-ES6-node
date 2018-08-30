@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        #wrap{
+            position: relative;
+            width: 600px;
+            height: 320px;
+            border: 1px solid red;
+        }
+        #box{
+            width: 100%;
+            height: 100%;
+        }
+        #box li{
+            display: none;
+            width: 100%;
+            height: 100%;
+
+        }
+        #box .on{
+            display: block;
+        }
+        #box li:nth-child(1){
+            background: url("images/1.jpg") 0px 0px/100% no-repeat;
+        }
+        #box li:nth-child(2){
+            background: url("images/2.jpg") 0px 0px/100% no-repeat;
+        }
+        #box li:nth-child(3){
+             background: url("images/3.jpg") 0px 0px/100% no-repeat;
+        }
+        #box li:nth-child(4){
+            background: url("images/4.jpg") 0px 0px/100% no-repeat;
+        }
+        #box li:nth-child(5){
+            background: url("images/5.jpg") 0px 0px/100% no-repeat;
+        }
+        #wrap span{
+            display: block;
+            width: 60px;
+            height: 35px;
+            text-align: center;
+            line-height: 35px;
+            color: #fff;
+            background-color: rgba(0,0,0,.4);
+            cursor: pointer;
+        }
+        #wrap span:nth-child(1){
+            float: right;
+            margin-top: 24%;
+        }
+        #wrap span:nth-child(2){
+            float: left;
+            margin-top: 24%;
+        }
+        
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <span> ></span>
+    <span> <</span>
+    <ul id="box">
+        <li class="on"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<script>
+    var  oBox = document.getElementById('box'),
+         oWrap=document.getElementById('wrap'),
+         oLis = oBox.getElementsByTagName('li'),
+         oSpan = oWrap.getElementsByTagName('span'),
+         
+         length= oLis.length,
+         preIndex=0,
+         nowIndex=0,
+         bool=false;
+
+    
+
+
+    oSpan[0].onclick = function(){
+        preIndex = nowIndex;
+        nowIndex++;
+
+        if (nowIndex >length-1){
+            
+                alert("已到头");
+                nowIndex=length-1;
+            
+            
+        }
+
+        oLis[preIndex].className="";
+        oLis[nowIndex].className='on';
+    };
+
+    oSpan[1].onclick = function(){
+      preIndex = nowIndex;
+      nowIndex--;
+
+      if (nowIndex<0){
+          
+              nowIndex = 0;
+              alert("已到头");
+          
+      }
+
+      oLis[preIndex].className="";
+      oLis[nowIndex].className='on';
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

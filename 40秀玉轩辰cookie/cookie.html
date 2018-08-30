@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cookie</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+<script>
+    /*
+       cookie必须在服务器环境才能使用
+        cookie 即时,仅一次会话有效
+    */
+    document.cookie = 'username=fengyu;expires=' + new Date(Date.now() + 60*100000).toUTCString();//当前时间戳
+    document.cookie = 'pwd=123456;expires=' + new Date(Date.now() + 60*100000).toUTCString();//两个完全一样是会覆盖
+    console.log(document.cookie);
+
+    const getCookie = (attr) => {
+        const arr = document.cookie.match(new RegExp('\\b' + attr + "=([^;]+)(;|$)"));
+        return arr ? arr[1]: "";
+
+    };
+    const setCookie = (obj , time = 0) =>{
+        const timer = new Date(Date.now() + time * 100000000).toUTCString();
+
+        for (let key in obj){
+            document.cookie = `${key}=${obj[key]};expires=${timer}`;
+        }
+    };
+
+    const DelCookie = attr =>{
+        let obj = {};
+        obj[attr] = "";
+        setCookie(obj , -1);
+    };
+    // setCookie({
+    //     pwd: 123456
+    // }, 1)
+    //本地存储
+    DelCookie("pwd");
+
+
+</script>
+</body>
+</html>

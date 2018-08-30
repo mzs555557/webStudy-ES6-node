@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>35</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        body{
+            background-color: rgba(0,0,0,.4);
+        }
+        #wrap {
+            position: absolute;
+            width: 500px;
+            height: 400px;
+            background-image: url("image/01.png") ;
+            background-size: 100% 100%;
+        }
+        [id *= copy]{
+            position: absolute;
+            width: 500px;
+            height: 400px;
+        }
+        #copy1 {
+            margin-left: 600px;
+        }
+       #copy2 {
+           background-image: url("image/01.png") ;
+           background-size: 100% 100%;
+       }
+
+        #box {
+            position: relative;
+            z-index: 999;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0,0,0,.6);
+            cursor: move;
+        }
+        #box li {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #E9E9E9;
+        }
+        #box li:nth-child(1) {
+            top: -6px;
+            left: -6px;
+            cursor: nw-resize;
+        }
+        #box li:nth-child(2) {
+            top: -6px;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            cursor: n-resize;
+        }
+        #box li:nth-child(3) {
+            top: -6px;
+            left: 100%;
+            cursor: ne-resize;
+        }
+        #box li:nth-child(4) {
+            top: 45%;
+            left: 100%;
+            cursor: e-resize;
+        }
+        #box li:nth-child(5) {
+            top: 100%;
+            left: 100%;
+            cursor: se-resize;
+        }
+        #box li:nth-child(6) {
+            top: 100%;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            cursor: s-resize;
+        }
+        #box li:nth-child(7) {
+            top: 100%;
+            left: -6px;
+            cursor: sw-resize;
+        }
+        #box li:nth-child(8) {
+            top: 45%;
+            left: -6px;
+            cursor: w-resize;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <ul id="box" class="box">
+        <li class="top_left"></li>
+        <li class="top"></li>
+        <li class="top_right"></li>
+        <li class="right"></li>
+        <li class="bottom_right"></li>
+        <li class="bottom"></li>
+        <li class="bottom_left"></li>
+        <li class="left"></li>
+    </ul>
+</div>
+<div id="copy1">
+    <div id="copy2">
+    </div>
+</div>
+
+<script>
+
+       /*
+        box.onmousedown = (e) => {//框选部分
+            e = e || window.event;
+            const downX = e.clientX,
+                downY = e.clientY,
+                //获取鼠标的坐标
+                eleDownTop = box.offsetTop,
+                eleDownLeft = box.offsetLeft;
+                //获取box的top与left
+            document.onmousemove = (e) => {//文本移动触发事件
+                let moveX = e.clientX,
+                    moveY = e.clientY,
+                    //移动时鼠标的坐标
+                    x_ = moveX - downX,
+                    y_ = moveY - downY,
+                    // 获取移动的距离
+                    left = x_ + eleDownLeft,
+                    top = y_ + eleDownTop;
+                    // 获取定位
+                left = Math.min((wrap.clientWidth - box.clientWidth), left);
+                left = Math.max(0 , left);
+                top = Math.min(wrap.clientHeight - box.clientHeight , top);
+                top = Math.max(0 , top);
+                //限制在盒子内
+                box.style.top = top + 'px';
+                box.style.left = left + 'px';
+
+            }
+        };
+        document.onmouseup = () => {// 鼠标抬起触发事件
+            document.onmousemove = null;
+            //鼠标移动后不再变化
+        };
+        const oLi = document.querySelectorAll("#box li");//选择八个移动点,从左上角开始,延顺时针方向
+
+        oLi[0].onmousedown = (e) => {
+            e = e || window.event;
+            e.stopPropagation() || e.cancelable;//取消冒泡事件
+            const downX = e.clientX,
+                downY = e.clientY,
+                //获取鼠标的坐标
+                eleWidth = box.offsetWidth,
+                eleHeight = box.offsetHeight;
+                //获取box的宽高
+            document.onmousemove = (e) => {
+                let moveX = e.clientX,
+                    moveY = e.clientY,
+                    x_ = downX - moveX,
+                    y_ = downY - moveY,
+                    //与box中的注释相同
+                    width = x_ + eleWidth,
+                    height = y_ + eleHeight;
+                    //获取拉伸变化宽高
+                width = Math.min(width , wrap.clientWidth);
+                width = Math.max( 0 , width);
+                height = Math.min(height , wrap.clientHeight);
+                height = Math.max( 0 , height);
+                moveX = Math.min((wrap.clientWidth - box.clientWidth), moveX);
+                moveX = Math.max(0 , moveX);
+                moveY = Math.min(wrap.clientHeight - box.clientHeight , moveY);
+                moveY = Math.max(0 , moveY);
+                //限定盒子的宽高最小值
+
+
+                box.style.height = height + 'px';
+                box.style.width = width + 'px';
+                box.style.left = moveX + 'px';
+                box.style.top = moveY +'px';
+                //box的变化
+            };
+
+        };
+        oLi[1].onmousedown = (e) => {
+            e = e || window.event;
+            e.stopPropagation() || e.cancelable;
+            const downX = e.clientX,
+                downY = e.clientY,
+                //获取鼠标的坐标
+                eleWidth = box.offsetWidth,
+                eleHeight = box.offsetHeight;
+            //获取box的宽高
+
+            document.onmousemove = (e) => {
+                let moveX = e.clientX,
+                    moveY = e.clientY,
+                    x_ = downX - moveX,
+                    y_ = downY - moveY,
+                    //与box中的注释相同
+                    width = x_ + eleWidth,
+                    height = y_ + eleHeight;
+                height <= 50 ? height =50 : height;
+
+                width = Math.min(width , wrap.clientWidth);
+                width = Math.max( 0 , width);
+                height = Math.min(height , wrap.clientHeight);
+                height = Math.max( 0 , height);
+                moveX = Math.min((wrap.clientWidth - box.clientWidth), moveX);
+                moveX = Math.max(0 , moveX);
+                moveY = Math.min(wrap.clientHeight - box.clientHeight , moveY);
+                moveY = Math.max(0 , moveY);
+
+                box.style.height = height + 'px';
+                box.style.top = moveY +'px';
+            };
+
+        };//注释同oLI[0]
+        oLi[2].onmousedown = (e) => {
+            e = e || window.event;
+            e.stopPropagation() || e.cancelable;
+            const downX = e.clientX,
+                downY = e.clientY,
+                eleWidth = box.offsetWidth,
+                eleHeight = box.offsetHeight;
+
+            document.onmousemove = (e) => {
+                let moveX = e.clientX,
+                    moveY = e.clientY,
+                    x_ = moveX - downX,
+                    y_ = downY - moveY,
+                    width = x_ + eleWidth,
+                    height = y_ + eleHeight;
+                width <=50 ? width = 50 : width;
+                height <= 50 ? height =50 : height;
+
+                width = Math.min(width , wrap.clientWidth);
+                width = Math.max( 0 , width);
+                height = Math.min(height , wrap.clientHeight);
+                height = Math.max( 0 , height);
+                moveX = Math.min((wrap.clientWidth - box.clientWidth), moveX);
+                moveX = Math.max(0 , moveX);
+                moveY = Math.min(wrap.clientHeight - box.clientHeight , moveY);
+                moveY = Math.max(0 , moveY);
+
+                box.style.height = height + 'px';
+                box.style.width = width + 'px';
+                box.style.top = moveY +'px';
+            };
+
+        };//注释同oLI[0]
+        oLi[3].onmousedown = (e) => {
+            e = e || window.event;
+            e.stopPropagation() || e.cancelable;
+            const downX = e.clientX,
+                eleWidth = box.offsetWidth;
+
+            document.onmousemove = (e) => {
+                let moveX = e.clientX,
+                    x_ = moveX - downX,
+                    width = x_ + eleWidth;
+                width <=50 ? width = 50 : width;
+                box.style.width = width + 'px';
+            };
+
+        };//注释同oLI[0]
+        oLi[4].onmousedown = (e) => {
+            e = e || window.event;
+            e.stopPropagation() || e.cancelable;
+            const downX = e.clientX,
+                downY = e.clientY,
+                eleWidth = box.offsetWidth,
+                eleHeight = box.offsetHeight;
+
+            document.onmousemove = (e) => {
+                let moveX = e.clientX,
+                    moveY = e.clientY,
+                    x_ = moveX - downX,
+                    y_ = moveY - downY,
+                    width = x_ + eleWidth,
+                    height = y_ + eleHeight;
+                width <=50 ? width = 50 : width;
+                height <= 50 ? height =50 : height;
+                box.style.height = height + 'px';
+                box.style.width = width + 'px';
+            };
+
+        };//注释同oLI[0]
+        oLi[5].onmousedown = (e) => {
+            e = e || window.event;
+            e.stopPropagation() || e.cancelable;
+            const downY = e.clientY,
+                eleHeight = box.offsetHeight;
+
+            document.onmousemove = (e) => {
+                const moveY = e.clientY,
+                    y_ = moveY - downY,
+                    height = y_ + eleHeight;
+
+                box.style.height = height + 'px';
+            };
+
+        };//注释同oLI[0]
+        oLi[6].onmousedown = (e) => {
+            e = e || window.event;
+            e.stopPropagation() || e.cancelable;
+            const downX = e.clientX,
+                downY = e.clientY,
+                eleWidth = box.offsetWidth,
+                eleHeight = box.offsetHeight;
+
+            document.onmousemove = (e) => {
+                let moveX = e.clientX,
+                    moveY = e.clientY,
+                    x_ = downX - moveX,
+                    y_ = moveY-downY ,
+                    width = x_ + eleWidth,
+                    height = y_ + eleHeight;
+                width <=50 ? width = 50 : width;
+                height <= 50 ? height =50 : height;
+                box.style.height = height + 'px';
+                box.style.width = width + 'px';
+                box.style.left = moveX + 'px';
+            };
+
+        };//注释同oLI[0]
+        oLi[7].onmousedown = (e) => {
+            e = e || window.event;
+            e.stopPropagation() || e.cancelable;
+            const downX = e.clientX,
+                eleWidth = box.offsetWidth;
+
+            document.onmousemove = (e) => {
+                let moveX = e.clientX,
+                    x_ = downX - moveX,
+                    width = x_ + eleWidth;
+                width <=50 ? width = 50 : width;
+                box.style.width = width + 'px';
+                box.style.left = moveX + 'px';
+            };
+
+        };//注释同oLI[0]
+        */
+
+       const oBox = document.getElementById('box'),
+             oWrap = document.getElementById('wrap'),
+             oClip = document.getElementById('copy2')//获取id为box与wrap,copy2的元素
+             aLi = oBox.getElementsByTagName('li')//获取box下的li
+       ;
+
+       let w_width = oWrap.clientWidth,
+           w_height = oWrap.clientHeight//获取wrap大小
+       ;
+
+       // console.log(b_top ,b_left,b_max_X,b_max_Y,w_width,w_height);//检查上述元素
+       function dragBox() {
+           oBox.onmousedown = function (e) {
+               e = e || window.event;//获取事件
+               e.stopPropagation() || ( e.cancelable = true );//取消事件冒泡的行为
+               let b_width = oBox.offsetWidth,
+                   b_height = oBox.offsetHeight,
+                   //获取box的大小
+                   b_top = oBox.offsetTop,
+                   b_left = oBox.offsetLeft;
+                    //获取初始的方位
+               let downX = e.clientX,
+                   downY = e.clientY;
+               //获取点击时鼠标的初始位置
+               document.onmousemove = function (e) {
+                   e = e || window.event;//获取事件
+                   e.stopPropagation() || ( e.cancelable = true );//取消事件冒泡的行为
+
+                   let X_ = e.clientX - downX,
+                       Y_ = e.clientY - downY;
+                   //获取移动距离
+                   b_height = Math.min(b_height , w_height);
+                   b_width = Math.min(b_width , w_width);
+                   //限制box的大小
+                   let moveY = b_top + Y_,
+                       moveX = b_left + X_;
+                   //获取盒子的移动方位
+                   if (moveY <= 0 ||moveY > w_height -  b_height){
+                       moveY = Math.max( 0 , moveY);
+                       moveY = Math.min(moveY ,  w_height - b_height)
+                   }
+                   if (moveX  <= 0 || moveX > w_width -  b_width ){
+                       moveX  = Math.max( 0 , moveX );
+                       moveX  = Math.min(moveX  ,  w_width -  b_width)
+                   }
+                   //限制移动距离
+                    oBox.style.top = moveY + 'px';
+                    oBox.style.left = moveX + 'px';
+                    clipBox(moveY , moveX , b_width , b_height,w_width , w_height);
+                    function clipBox(moveY , moveX , b_width , b_height,w_width , w_height){
+                        oClip.style.clip = 'rect(' + moveY + 'px ' + (w_width-moveX) +'px '+
+                            (w_height - moveY) + 'px ' + moveX + 'px)';
+                    }
+               }
+           };
+           stopMouse();
+       }
+       dragBox();//执行函数
+
+       function boxSizeChange() {
+
+           for (let i =0 ; i < aLi.length ; i++) {
+                   aLi[i].onmousedown = function (e) {
+                       e = e || window.event;//获取事件
+                       e.stopPropagation() || ( e.cancelable = true );//取消事件冒泡的行为
+                       let downX = e.clientX,
+                           downY =e.clientY,
+                           //获取点击时鼠标的初始位置
+                           b_width = oBox.offsetWidth,
+                           b_height = oBox.offsetHeight;
+                           //获取box的大小
+
+                       document.onmousemove = function (e) {
+                           e = e || window.event;//获取事件
+                           e.stopPropagation() || ( e.cancelable = true );//取消事件冒泡的行为
+                           let moveX = e.clientX,
+                               moveY =e.clientY,
+                               //点击位置
+                               X_ = moveX - downX,
+                               Y_ = moveY - downY,
+                               //获取移动距离
+                               b_top = oBox.offsetTop,
+                               b_left = oBox.offsetLeft;
+                               //获取初始的方位
+                           let width , height , left , top;
+                           switch (aLi[i].className) {
+                               case "top_left":
+                                   width = b_width - X_;
+                                   height = b_height - Y_;
+                                   top = moveY;
+                                   left = moveX;
+                                   break;
+                               case "top":
+                                   top = moveY;
+                                   height = b_height - Y_;
+                                   break;
+                               case "top_right":
+                                   height = b_height - Y_;
+                                   width = b_width + X_;
+                                   left = b_left;
+                                   top = moveY;
+                                   break;
+                               case "right":
+                                   width = b_width + X_;
+                                   left = b_left;
+                                   break;
+                               case "bottom_right":
+                                   width = b_width + X_;
+                                   height = b_height + Y_;
+                                   top = b_top;
+                                   left = b_left;
+                                   break;
+                               case "bottom":
+                                   height = b_height + Y_;
+                                   top = b_top;
+                                   break;
+                               case "bottom_left":
+                                   width = b_width - X_;
+                                   height = b_height + Y_;
+                                   top = b_top;
+                                   left = moveX;
+                                   break;
+                               case "left":
+                                   width = b_width - X_;
+                                   left = moveX;
+                                   break;
+                           }
+                           height = Math.min(height , w_height);
+                           height = Math.max(50 , height);
+                           width = Math.min(width , w_width);
+                           width = Math.max(50 , width);
+                           //限制box的大小
+                           if (top <= 0 ||top > w_height -  height){
+                               top = Math.max( 0 , top);
+                               top = Math.min(top ,  w_height - height)
+                           }
+                           if (left  <= 0 || left > w_width -  width ){
+                               left  = Math.max( 0 , left );
+                               left  = Math.min(left  ,  w_width - width)
+                           }
+                           //限制移动距离
+                           oBox.style.left = left + 'px';
+                           oBox.style.top = top + 'px';
+                           oBox.style.width = width + 'px';
+                           oBox.style.height = height + 'px';
+                           //赋给box宽高与定位
+                       }
+                   };
+                    stopMouse();
+
+           }
+
+       }
+       boxSizeChange();
+
+       function stopMouse() {
+           document.onmouseup = function(){
+               document.onmousemove = null;
+           }
+       }
+</script>
+</body>
+</html>

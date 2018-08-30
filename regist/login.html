@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft yahei", serif;
+        }
+
+        li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+<div class="login">
+    <h2>登陆</h2>
+    <div class="inputbox">
+        <input type="text" name="email" placeholder="  邮箱" id="email-one">
+        <input type="password" name="password" placeholder="  密码" id="password-one">
+        <input type="text" name="authCode" placeholder="  验证码" id="authcode-one">
+    </div>
+    <button id="userLogin">登陆</button>
+</div>
+<script src="regist.js"></script>
+<script>
+    $("#userLogin").click(function () {
+        $.ajax({
+            url : '/login',
+            method : "GET",
+            data :{
+                username : $("#email-one").val(),
+                password : $("#password-one").val()
+            },
+            success : function (data) {
+                alert(data);
+            },
+            error : function () {
+                alert("访问失败");
+            }
+        })
+    })
+</script>
+</body>
+</html>

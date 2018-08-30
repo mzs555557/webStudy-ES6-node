@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+<script>
+   /* const a = Symbol(1);
+    const b = Symbol('s2');
+    console.log(a , b);
+    const c = Symbol('s1');
+    console.log(a === c);
+    //相同Symbol的返回值不同
+    //Symbol转布尔值都是true
+    console.log(a.toString())
+
+   let s1 = Symbol;
+   let o ={
+       // [s1]: 1,
+       s1: 2
+   };
+    console.log(o.s1 , o[s1])
+
+   let s5 = Symbol('s5');
+   let s6 = Symbol('s6');
+   let a = {
+       [s5] : 's5',
+       [s6] : 's6'
+   };
+   console.log(Object.getOwnPropertySymbols(a));
+   a.hellow = 1;
+   console.log(Reflect.ownKeys(a));
+   *.
+
+   let s = new Set();
+   [2,3,3,4,5,6,6].forEach(x =>s.add(x));
+   let arr = [2,3,4,56,7];
+   // for (let i in [...s]){
+   //     console.log([...s][i]);
+   // }
+    s.forEach((a,b) => {
+        console.log(a);
+        console.log(b);
+    })
+
+
+   const ws = new WeakSet([[1,2,3,4,5,6],{}]);//弱引用
+   console.log(ws);
+
+   const map = new Map();
+   const o = {
+       p: 'hello World'
+   };
+   console.log(map.set(o, 'content'));
+   console.log(map.get(o));
+   console.log(map.has(o));
+   console.log(map.delete(o));
+
+
+   const map = new Map([
+       ['name','sam'],
+       ['title','author']
+   ]);
+   console.log(map.size);
+   console.log(map.get('name'));
+   console.log(map.get('title'));
+
+   map.set(3, ['555']);
+   console.log(map.get(3));
+
+    [...map].forEach((a,b)=>{
+        console.log(a,b)
+    });
+    for (let key in [...map]){
+        console.log(key, [...map][key])
+    }
+    for (let key of [...map]) {
+        console.log(key)
+    }
+    */
+   function strMapToObj(starMap) {
+       let obj = Object.create(null);
+       for (let [k,v] of starMap) {
+           obj[k] = v;
+       }
+       return obj;
+   }
+   const myMap = new Map().set('yes',true).set('no',false);
+
+   console.log(strMapToObj(myMap));
+
+</script>
+</body>
+</html>

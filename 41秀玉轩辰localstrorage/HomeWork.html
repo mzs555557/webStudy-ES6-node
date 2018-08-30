@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        a{
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: black;
+        }
+        #content {
+            width: 300px;
+            height: 40px;
+        }
+        #search {
+            width: 150px;
+            height: 40px;
+            font-size: 20px;
+        }
+        #list {
+            width: 300px;
+        }
+        #list li {
+            display: block;
+            width: 100%;
+            height: 40px;
+            font-size: 30px;
+            line-height: 40px;
+            text-align: center;
+            border-bottom: 1px solid black;
+            cursor: pointer;
+        }
+        #list li:hover{
+            background-color: rgba(0,0,0,.2);
+        }
+    </style>
+</head>
+<body>
+<label>
+    <input type="text" id="content">
+    <button id="search">点击搜索</button>
+</label>
+<ul id="list">
+</ul>
+<script>
+    /*
+        CORS代理
+        jsonp
+
+    const oContent = document.getElementById('content'),
+          oSearch = document.getElementById('search');
+
+    oContent.onkeyup = function () {
+        const script = document.createElement('script');//创建跨域请求的节点
+        let val = this.value.trim();//获取关键词
+        let InetAddress = `https://www.baidu.com/su?wd=${val}&cb=window.baidu.sug`;//获取网址
+        script.src = InetAddress;
+        oSearch.innerHTML = `<a href="${InetAddress}">点击搜索</a>`;//页面的跳转
+        document.body.appendChild(script);//增加节点
+    };
+    *
+    const oContent = document.getElementById('content'),
+        oSearch = document.getElementById('search');
+
+    oContent.onkeyup = function (obj) {
+        const script = document.createElement('script');
+        let val = this.value.trim();//获取关键词
+        let InetAddress = `https://www.baidu.com/su?wd=${val}`;//获取网址
+        // obj.baidu={
+        //     sug: function (json) {
+        //         console.log(json);
+        //     }
+        // };
+
+        script.src = InetAddress;
+        document.appendChild(script);
+    }
+
+    const oContent = document.getElementById('content'),
+        oSearch = document.getElementById('search');
+
+    oContent.onkeyup = function () {
+        let val = oContent.value.trim();
+        $.getJSON(`https://www.baidu.com/su?wd=${val}`,function(json){
+            console.log(json)
+        });
+    };
+*/
+    const oContent = document.getElementById('content'),
+        oSearch = document.getElementById('search'),
+        list = document.getElementById('list')
+    ;
+    let array = [];
+
+    function setLi(obj) {
+        list.innerHTML ="";
+        console.log(obj);
+        array = obj.s;
+        array.forEach(k=>{
+            list.innerHTML += `<li>${k}</li>`
+        })
+    }
+
+    oContent.onkeyup = function () {
+        let val = this.value.trim();//获取关键词
+        if (val === "") return;
+        let InetAddress = `https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${val}&cb=setLi`;//获取网址
+
+        const script = document.createElement('script');//创建跨域请求的节点
+        script.src = InetAddress;
+        document.body.appendChild(script);//增加节点
+    };
+
+    list.addEventListener('click', e => {
+        e.stopPropagation();
+        let that = e.target;
+        array.forEach((v, i) => {
+            console.log(that);
+            if(that === list.children[i]){
+                let src = `https://www.baidu.com/s?wd=${that.innerHTML.trim()}`;
+                open(src);
+                oContent.value = '';
+                list.innerHTML = '';
+                list.style.display = 'none';
+            }
+        })
+
+    })
+</script>
+</body>
+</html>

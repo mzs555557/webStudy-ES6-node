@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>32</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+
+<div class="yy"></div>
+<div class="yy"></div>
+<script type="text/javascript">
+    /*
+        promise / 回调地狱//异步编程解决方案
+
+        Promise 状态 进行中,成功 失败
+        全封闭: 一旦启动promise,外部再也不能改变其内部状态
+        如果不设置回调函数,内部抛出错误,不会反映到外部
+
+        当有大量计算时,整个系统就会卡住,都会使用异步方式来进行组织代码
+        event.addListener("",function(){})
+     */
+    function random(){
+        return parseInt(Math.random()*1000);
+    }
+
+    // console.log(random());
+
+    // setTimeout(()=>{
+    //     console.log("time");
+    // },random());
+    // setTimeout(()=>{
+    //     console.log("end");
+    // },random());
+    /*
+    new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            try {
+                console.log("事件一");
+                resolve("时间以传递给事件二");
+            } catch (error) {
+                reject(error);
+            }
+        },random());
+    }).then(msg=>{
+        console.log(msg);
+        console.log("事件二");
+        new Promise((res,rej)=>rej("时间而是白白")).then(msg=>{
+
+        },err=>{
+            console.log(err);
+        });
+        return undefined;
+    },err=>{
+        console.log(err);
+    }).then(msg=>{
+        console.log(msg);
+        console.log("事件三");
+    },err=>{
+        console.log(err);
+        return new Promise((res,rej)=>{rej("shibai")})
+    }).catch(err=>{console.log(err);})
+    */
+    /*
+ *@param
+ *
+ *
+ *
+ * */
+
+    /*  const p1 = new Promise(()=>{}),
+        p2 = new Promise(()=>{}),
+        p3 = new Promise(()=>{
+            reject();
+        });
+    //const p =Promise.all([p1,p2,p3]);//内部有一个失败则失败
+    const p=Promise.race([p1,p2,p3]);//内部率先的状态为p的状态
+    const reject = Promise.reject();//返回失败信息,resolve相反
+
+    const oDiv1 = document.getElementsByTagName("div"),
+        oDiv2 = document.querySelectorAll(".yy");
+    console.log(oDiv1);
+    console.log(oDiv2);
+
+    let arr = ['a','b','c'],
+        iter = arr[Symbol.iterator]();
+
+    function myIter(obj){
+        let i = 0;
+        return {
+            next() {
+                let done = (i >= obj.length);
+                let value = !done ? obj[i++] : undefined;
+                return {
+                    value,
+                    done,
+                }
+            }
+        }
+    }
+    const obj = {
+        0:"a",
+        1:"b",
+        2:"c",
+        3:"d",
+        length:5
+    };
+    Object.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
+    // [Symbol.iterator]: Array.prototype[Symbol.iterator],
+    for (let key of obj){
+        console.log(key);
+    }
+
+
+    function* f() {
+        yield  1;
+        yield  2;
+        yield  3;
+        yield  4;
+        return 5;
+    }//定义时候有星号
+    let iter = f();//返回iterator对象
+    for (const value of iter){
+        console.log(iter.next());
+    }// ? 只返回 2 跟 4 是因为调用时会自动加入next(),导致两次调用next()
+    */
+
+    function* fn(){
+        var y = 2 * (yield (x + 1));
+        var z = yield (y / 3);
+        return (x + y + z);
+    }
+    var a  = foo(5);
+    a.next();
+    a.next();
+    a.next();
+    var b = foo(5);
+    b.next();
+    b.next(12);
+    b.next(13);
+
+
+</script>
+</body>
+</html>

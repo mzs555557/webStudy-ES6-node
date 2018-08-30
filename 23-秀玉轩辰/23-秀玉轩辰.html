@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript">
+   /* let  arr = [1,2,3,5,6,7,8223,234,3454,123,24,567];
+    const len = arr.length;
+    // sort((a,b)=>a-b);
+
+
+    let date1= new  Date();
+    let  a = 1,
+         b = 2;
+    a = [b , b=a][0];
+    [a , b] = [b , a];
+    console.log(a , b);
+    */
+   const box = document.getElementById("box");
+
+   const arr = [];
+
+   const {floor : f , Random : r} =
+
+   const len = 100;
+
+   for (let i = 0; i<100 ; i++) arr.push(i);
+
+   arr.sort((a , b) => r() - 0.5);
+
+   let i = 0;
+   function run() {
+       //取数组对应的值
+       let value = arr[i];
+
+       if (i > len - 1) return;
+
+       let top = f(value/10) * 50;
+
+       let left = (value %10) * 50;
+
+   }
+
+   box.id = "wrap";
+
+   box.onclick = () =>{
+
+
+
+   };
+   console.log(box);
+
+   div[i].style.cssText = `background: url(./1..png) -${left}px -${top}px;`;
+
+   animation(div[i],{
+       data: {
+           top,
+           left
+       }
+
+       }, 200 , () => {
+        i++;
+        requestAnimationFrame(run);
+       });
+   may = 1;
+
+</script>
+
+</body>
+</html>

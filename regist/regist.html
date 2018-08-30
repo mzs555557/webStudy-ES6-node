@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>regist</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft yahei", serif;
+        }
+
+        li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+<div class="regist">
+    <h2>注册</h2>
+    <div class="inputbox">
+        <input type="text" name="fullname" placeholder="  昵称" id="nikename">
+        <input type="text" name="email" placeholder="  邮箱" id="email-two">
+        <input type="password" name="password" placeholder="  密码" id="password-two">
+    </div>
+    <button id="register">注册</button>
+</div>
+<script src="regist.js"></script>
+<script>
+    $("#register").click(function () {
+        $.ajax({
+            url : '/regist',
+            method : "GET",
+            data :{
+                fullname : $("#nikename").val(),
+                email : $("#email-two").val(),
+                password : $("#password-two").val()
+            },
+            success: function(data) {
+                alert(data);
+            },
+            error : function () {
+                alert("访问失败");
+            }
+        })
+    })
+</script>
+</body>
+</html>

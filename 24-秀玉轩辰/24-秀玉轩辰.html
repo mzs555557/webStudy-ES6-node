@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    // const str = "123456789";
+    //
+    // let reg = new RegExp("^12$");
+
+    /*
+        转义符:
+        \d[0-9]
+        \D 非数字
+        \s 空格
+        \S 非空格
+        \w 字符(数字,字母,_)
+        \W 非\w所匹配范围
+        \b 单词边界,就是指单词和空格之间的位置
+           .  除换行符之外的所有字符都是他的匹配范围
+        ^ 字符串的起始
+        $ 字符串的结束
+
+
+        量词: {最小次,最大次}    {5,10}
+
+        标识符:2
+
+
+
+        \t 制表符
+        \v 垂直制表符
+        \f 换页符
+        \n 换行符
+        \r 回车符
+
+     */
+        // \d[0-9]
+  //  let obj = {a:1};
+
+    /*  const str1 = "tanuuzhou\\uu12";
+
+    let  reg1 = /\u{2,9}?/;
+
+    let a = str1.match(reg1);
+    console.log(a);
+    //    console.log(JSON.stringify(obj));
+    */
+
+     // const str = "TAN\nZHOU";
+  //
+  // let reg = /^Z/img;
+  //
+  //
+  // let a = str.match(reg);
+  //
+  // console.log(a);
+
+    /* let str = "风屿帅逼怪了";
+
+    let reg = /(风屿)(帅逼)(怪了)/g;
+
+    let s1 = str.replace(reg ,"$2--$3--$1");
+
+    console.log(s1);
+    //ES6 的class
+    class Person2{
+        constructor(name,age){
+
+        }
+        alert();
+    }
+    for (var key in obj){
+
+    }
+    *
+    * /
+    *
+*/
+   // [Symbol.iterator]
+    /*let a = 3;
+    function fn() {
+        alert(a);
+    }
+
+    function fn2(){
+        let a=2;
+        fn(a);
+        arguments.length
+    }
+    fn2();
+
+    document.onclick = fn;
+
+    function fn(a,b,c,d){
+        console.log(arguments.length);
+    }
+    fn(1,2,3,4,5,6);
+
+    let add;
+    add = (n) => n + 2;
+    let cdd = (parameters)=>{
+        let {n, a, b} = parameters;
+        let b = n*5;
+        return b * n;
+    }
+    let fn = ()=>{
+        console.log(this);
+    };
+    fn();
+    console.log(this);
+
+    const oBox = document.getElementById("box");
+    oBox.onclick = ()=>{
+        alert("asd");
+    };
+    "use strict";
+    console.log(this);
+    function fn() {
+        "use strict";
+        console.log(arguments);
+    }
+
+    fn();
+    let e = function (a,...b) {
+        console.log(a);
+        console.log(b);
+    };
+    e(1,2,3);
+
+    let c = 5;
+    function fn( a , b = c) {
+        console.log(b);
+    }
+    fn(3);
+    ~function () {
+        console.log(window.innerWidth);
+        console.log(window.outerWidth);
+        console.log(window.getComputedStyle);
+    }();
+    (function f(){
+
+    })();
+
+
+    class tab{
+        constructor(titName, conName){
+            this.tit = [...document.getElementsByClassName(titName)];
+            this.con = [...document.getElementsByClassName(conName)];
+            this.tit.forEach((v,i) => {
+                let children = [...v.children];
+                children.index =0;
+                let cC = this.con[i].children;
+                children.forEach((v,i,a) =>{
+                    if (i !== a.index){
+                        a[a.idx].classList.remove("cur")
+                    }
+                })
+            })
+        }
+    }
+
+    const str = "0123456789";
+    let reg = /0123456789/;
+    // let reg = new RegExp("012356789");
+    console.log(reg.test(str));
+
+    let obj = "{\"a\":\"1\"}";
+    console.log(obj);
+    console.log(JSON.parse(obj));
+
+    let str1 = "H";
+    let reg1 = /\D/;
+
+    console.log(reg1.test(str1));
+    */
+
+    /*
+        const str = "wulianwang12312321312312";
+        let reg = /\w/g;
+        /*
+        /i  表示匹配的时候不区分大小写
+        /g 表示该表达式将用来在输入字符串中查找所有可能的匹配，返回的结果可以是多个。如果不加/g最多只会匹配一个
+        /m 表示多行匹配，什么是多行匹配呢？就是匹配换行符两端的潜在匹配。影响正则中的^$符号
+        **
+        let reg1 = /^wui/;
+        let a = str.match(reg);
+        console.log(a);
+        // 贪婪非贪婪匹配
+        // console.log("\313");
+
+    //中文[\u4e00 - \u9fa5]
+    let str = "物联科技";
+
+    let reg = /(.{2})(.{2})/g;
+
+    let s1 = str.replace(reg,"$2--$1");
+
+    console.log(s1);
+
+    function isFloat(n) {
+        n += ""
+        const reg = /^(-?)\d+\.\d+$/;
+        if (reg.test(n)) {
+            return "是"
+        } else {
+            return "否"
+        }
+    }
+    console.log(isFloat(+123.00));
+
+
+    function isChina(n) {
+        return /^[\u4e00-\u9fa5]{2,5}$/.test(n);
+    }
+
+    console.log(isChina("头条你你你你你"));
+    function isEmail(n) {
+        return /^\w{5,18}@[0-9a-z]{1,4}\.[a-z]{2,6}$/.test(n);
+    }
+    console.log(isEmail("wwwwww@qq.com"));
+
+    const obj = {
+        length: 0,
+        addElem: function addElem(elem){
+            [].push.call(this,elem);
+        }
+    };
+    obj.addElem({a:3});
+    obj.addElem({b:4});
+    console.log(obj.length);
+    */
+
+    /*
+    let str = "asdasd";
+    let reg = /[^a]+/g;
+    console.log(str.match(reg));
+
+
+    let str = "1112233334445555";
+    let reg = /(\d)\1+/g;
+    console.log(str.match(reg));
+    */
+    /*
+        (?=模式)
+            零宽度正预测先行断言,正向肯定预查
+        (?!模式)
+            正向否定预查  //查找后面的部分
+           (?<=)
+           反向肯定 //查找前面的部分
+           ?<!
+           反向否定
+
+    let str1 = "fengyu123";
+    let str2 = "fengyu456";
+    let reg = /fengyu(?=123|456)/;
+    console.log(str1.replace(reg, '$1'));
+    console.log(reg.test(str1));
+    */
+
+</script>
+</body>
+</html>

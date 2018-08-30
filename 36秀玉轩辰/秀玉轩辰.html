@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+<!--<div id="grandpa" style="width: 200px;height: 200px;background-color: red">grandpa
+    <div id="father" style="width: 150px;height: 150px;background-color: blue">father
+        <div id="child" style="width: 100px;height: 100px;background-color: blueviolet">child
+            <div id="grandson" style="width: 50px;height: 50px;background-color: peru">grandson
+            </div>
+        </div>
+    </div>
+</div>-->
+<div>div</div>
+<span>span</span>
+<ul>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+</ul>
+<p>P</p>
+<script>
+    /*  DOM零级事件 只能绑定一个事件
+
+        DOM 一级事件 addEventListener(type , cb , boolean) 绑定多个事件   //低版本IE不兼容
+            type : 事件类型
+            cb :时间函数
+            boolean :  冒泡或者捕获 默认false是冒泡
+
+              removeEventListener(type, fn , boolean) 移除事件监听
+
+
+        低版本IE attachEvent(type , cb)
+
+            低版本 : detachEvent(type, cb)
+
+    function on(dom , type , cb , bool){
+        if (dom.addEventListener){
+            dom.addEventListener()
+        } else{
+            dom.attachEvent();
+        }
+    }
+*/
+
+   /* (function() {
+        if (!Event.prototype.preventDefault) {
+            Event.prototype.preventDefault=function() {
+                this.returnValue=false;
+            };
+        }
+        if (!Event.prototype.stopPropagation) {
+            Event.prototype.stopPropagation=function() {
+                this.cancelBubble=true;
+            };
+        }
+        if (!Element.prototype.addEventListener) {
+            var eventListeners=[];
+
+            var addEventListener=function(type,listener /*, useCapture (will be ignored) //) {
+                var self=this;
+                var wrapper=function(e) {
+                    e.target=e.srcElement;
+                    e.currentTarget=self;
+                    if (typeof listener.handleEvent !== 'undefined') {
+                        listener.handleEvent(e);
+                    } else {
+                        listener.call(self,e);
+                    }
+                };
+                if (type==="DOMContentLoaded") {
+                    var wrapper2=function(e) {
+                        if (document.readyState==="complete") {
+                            wrapper(e);
+                        }
+                    };
+                    document.attachEvent("onreadystatechange",wrapper2);
+                    eventListeners.push({object:this,type:type,listener:listener,wrapper:wrapper2});
+
+                    if (document.readyState==="complete") {
+                        var e=new Event();
+                        e.srcElement=window;
+                        wrapper2(e);
+                    }
+                } else {
+                    this.attachEvent("on"+type,wrapper);
+                    eventListeners.push({object:this,type:type,listener:listener,wrapper:wrapper});
+                }
+            };
+            var removeEventListener=function(type,listener /*, useCapture (will be ignored) /) {
+                var counter=0;
+                while (counter<eventListeners.length) {
+                    var eventListener=eventListeners[counter];
+                    if (eventListener.object===this && eventListener.type===type && eventListener.listener===listener) {
+                        if (type==="DOMContentLoaded") {
+                            this.detachEvent("onreadystatechange",eventListener.wrapper);
+                        } else {
+                            this.detachEvent("on"+type,eventListener.wrapper);
+                        }
+                        eventListeners.splice(counter, 1);
+                        break;
+                    }
+                    ++counter;
+                }
+            };
+            Element.prototype.addEventListener=addEventListener;
+            Element.prototype.removeEventListener=removeEventListener;
+            if (HTMLDocument) {
+                HTMLDocument.prototype.addEventListener=addEventListener;
+                HTMLDocument.prototype.removeEventListener=removeEventListener;
+            }
+            if (Window) {
+                Window.prototype.addEventListener=addEventListener;
+                Window.prototype.removeEventListener=removeEventListener;
+            }
+        }
+    })();*/
+
+    /*addEventListener的冒泡与捕获
+    function sleep() { console.log("grandpa: I am sleeping,well I just can't fall asleep"); } 
+    function watchTV() { console.log("father:I am watching TV"); } 
+    function playingCard() { console.log("child:I am playing Card"); } 
+    function doingHomework() { console.log("grandson:I am doing my homework T_T"); }
+    grandpa.addEventListener("click", sleep, true);
+    father.addEventListener("click", watchTV, false);
+    child.addEventListener("click", playingCard, false);
+    grandson.addEventListener("click", doingHomework, true);
+
+
+    const btn = document.getElementsByTagName('button');
+    let value = 0;
+
+    btn[0].addEventListener("click",function(){
+        value += 4;
+        btn[1].addEventListener("click",()=>{
+            value += 2;
+            btn[2].addEventListener("click",()=>{
+                value += 1;
+                console.log(value);
+            });
+            console.log(value);
+        });
+        console.log(value);
+    })*/
+
+    /*document.addEventListener("click",(e)=>{
+    const TagName = e.target.tagName.toLowerCase();
+    if (TagName === "div" || TagName === "p") {
+        console.log(e.target.innerHTML);
+    }
+});
+    document.onclick = (e) =>{
+        console.log("clicked");
+    }
+    */
+
+
+</script>
+</body>
+</html>

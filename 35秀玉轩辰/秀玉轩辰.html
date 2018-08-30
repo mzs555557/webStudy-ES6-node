@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>35</title>
+    <link rel="icon" href="image/01.png" type="image/x-icon">
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        #box {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: #ff3b5b;
+        }
+        #rightBottom {
+            position: relative;
+            left: 100%;
+            top: 100%;
+            width: 20px;
+            height: 20px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="rightBottom"></div>
+</div>
+<script type="text/javascript">
+    /*
+        跟鼠标有关的
+        clientX/Y相对于当前的文档的可视区域左上角的坐标
+
+        pageX/Y相对文档左上角的坐标
+
+        键盘
+        key 按键的键
+        keyCode 68 键对应的值 字母D
+
+        取消事件冒泡:
+            stopPropagation() // 不兼容低版本IE
+
+            cancelBubble = true // 低版本IE用于阻止冒泡
+
+    */
+
+    box.onmousedown = (e) =>{
+        e = e || window.event;
+
+        const downX = e.clientX,
+              downY = e.clientY,
+              eleDownTop = box.offsetTop,
+              eleDownLeft = box.offsetLeft;
+
+        document.onmousemove = (e) =>{
+            const  moveX =  e.clientX,
+                   moveY = e.clientY,
+                   x_ = moveX - downX,
+                   y_ = moveY - downY,
+                   left = x_ + eleDownLeft,
+                   top = y_ + eleDownTop;
+
+            box.style.top = top + 'px';
+            box.style.left = left + 'px';
+
+        }
+    };
+
+    box.onmouseup = () => {
+        document.onmousemove = null;
+    }
+
+    rightBottom.onmousedown = (e) => {
+        e = e || window.event;
+        e.stopPropagation();
+        const downX = e.clientX,
+              downY = e.clientY,
+              eleWidth = box.offsetWidth,
+              eleHeight = box.offsetHeight;
+
+        document.onmousemove = (e) => {
+            const  moveX =  e.clientX,
+                   moveY = e.clientY,
+                   x_ = moveX - downX,
+                   y_ = moveY - downY,
+                   width = x_ + eleWidth,
+                   height = y_ + eleHeight;
+
+            box.style.height = height + 'px';
+            box.style.width = width + 'px';
+        };
+
+    }
+
+
+   /* box.onclick = function(e){
+        e = e || window.event;
+        e.stopPropagation() || e.cancelBubble;
+        console.log("box");
+    };
+    document.onclick = function(){
+        console.log("document");
+    }*/
+
+</script>
+</body>
+</html>

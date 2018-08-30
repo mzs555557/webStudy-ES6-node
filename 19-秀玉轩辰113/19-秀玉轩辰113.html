@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        #wrap{
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            border: 1px solid  red;
+        }
+        #wrap span{
+            display: block;
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            background-color: rgba(0,0,0,.5);
+            cursor: pointer;
+        }
+        #wrap span:hover{
+            background-color: rgba(0,0,0,.2);
+        }
+
+            /*
+                标签
+            */
+        #wrap .content{
+            overflow: hidden;
+            width: 100%;
+            height: 240px;
+            border: 1px solid  red;
+        }
+        /* background: url("images/scroll1.png") 0 0 /100% no-repeat,
+                        url("images/scroll2.png") 0 240px /100% no-repeat,
+                        url("images/scroll3.png") 0 0 /100% no-repeat
+
+            ;*/
+        #wrap .content li{
+            width: 100%;
+            height: 100%;
+
+        }
+        #wrap .content li:nth-child(1){
+            margin-top: 0;
+            background: url("images/scroll1.png") 0 0 /100% no-repeat;
+        }
+        #wrap .content li:nth-child(2){
+            background: url("images/scroll2.png") 0 0 /100% no-repeat;
+        }
+        #wrap .content li:nth-child(3){
+            background: url("images/scroll3.png") 0 0 /100% no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <span>上</span>
+        <ul class="content">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    <span class="bot">下</span>
+</div>
+<script>
+    (function (){
+        var oLi = document.getElementsByClassName('content')[0].getElementsByTagName('li')[0],
+            oWrap = document.getElementById('wrap'),
+            oTop = oWrap.getElementsByTagName('span')[0],
+            oBottom = oWrap.getElementsByTagName('span')[1],
+            num = 0,
+            bool = true,
+            bool1 = true
+        ;
+
+        oBottom.onmouseenter = function(){
+            bool1 = true;
+        };
+        oBottom.onmouseleave = function(){
+            bool1 = false;
+        };
+        setInterval(function(){
+            if (bool1){
+                if(num<=0){
+                    num=0;
+                }else{
+                    num-=5;
+                }
+                oLi.style.marginTop = -num+"px";
+            } else{
+                oLi.style.marginTop = -num+"px";
+            }
+
+        },80);
+
+
+
+
+            oTop.onmouseenter = function(){
+                bool = true;
+            };
+            oTop.onmouseleave = function(){
+                bool = false;
+            };
+
+            setInterval(function(){
+
+                if (bool){
+                    if(num>=478){
+                        num=478
+                    }else{
+                        num+=5;
+                    }
+                    oLi.style.marginTop = -num+"px";
+                } else{
+                    oLi.style.marginTop = -num+"px";
+                }
+
+
+            },80);
+
+
+
+
+    })();
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

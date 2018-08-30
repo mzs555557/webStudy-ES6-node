@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    $.ajax({
+       url:"http://baidu.com",
+       method:'POST',
+       data:{
+           user: "fengyu",
+           pwd: 123456
+       },
+        success(msg){
+            console.log(msg);
+        }
+    });
+    //Asynchronous JavaScript and XML
+    //     无刷新页面进行数据加载
+    /*
+        ajax XML
+         ActiveXObject//IE
+
+         http1.0  !GET !POST HEAD
+         http   //method
+         增  POST
+         删  DELETE
+         改  PUT
+         查  GET 数据小 4k
+
+        xhr.status --> 服务器的状态码
+
+        RESFUL
+     */
+    // XMLHttpRequest
+
+    const xhr = new XMLHttpRequest();
+
+    // xhr.open(method,url,bool);//bool true异步 false同步
+    xhr.open("GET",'http://www.baidu.com?user=fengyu&pwd=12345',true);
+    xhr.send();
+    //
+    xhr.open("POST",'http://www.baidu.com');
+    xhr.setRequestHeader('Content-Type',"application");
+    xhr.send("user=fengyu&pwd=12345");
+    //请求需要正式发送
+
+    //监听结束行为
+    xhr.onload=() =>{//加载完后触发
+        if (xhr.readyState===4){
+            /*
+                //自身状态码 : 0 1 2 3 4
+                0 未初始化
+                1服务器建立
+                2请求接受
+                3请求处理
+                4请求完成,且响应就绪
+             */
+
+        }
+    };
+    xhr.onreadystatechange =() =>{//变化时触发
+        if (xhr.readyState === 4){
+            /*
+                //需HTTP状态码
+                确定http状态码 2开头 和404
+            */
+            if (200 <= xhr.status && xhr.status < 300 || xhr.status === 304){
+                //请求成功
+                xhr.responseText;      //后台返回数据
+            }
+        }
+    }
+    // xhr.onreadystatechange =() =>{}
+    // http://baidu.com?wd=(风屿)通过encodeURI转位编码格式 decodeURI解码 url(资源占位符)
+
+    //跨域
+    /*
+        操作 script是如此可实现跨域 JSONP
+        CORS 在后台程序中设置可以对于进行访问
+        GFW 墙  通过信任服务器代理请求
+     */
+
+</script>
+</body>
+</html>

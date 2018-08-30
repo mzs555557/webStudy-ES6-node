@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>0</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+        ol, ul {
+            list-style: none
+        }
+        caption, th {
+            text-align: left
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    /*document.write(navigator.userAgent);
+    console.log(confirm("do you love me ?"));
+    if (confirm("do you love me ?")) {
+
+    }else{
+        open("http://www.baidu.com");
+    }
+
+    const fn = function () {
+        document.title++ ;
+        releaseEvents()
+    };
+    fn();
+
+
+    console.log(typeof window);
+    const inBrower = typeof window !== 'undefined';
+    const inWeex = typeof WXEnviroment !== 'undefined' && !!WXEnviroment.platform;
+    const UA = inBrower && window.WXEnviroment.platform.toLowerCase();
+    const WeexPlatform = inWeex && WXEnviroment.platform.toLowerCase();
+    const isIE = UA && /mise|trident/.test(UA);
+    const isAndroid = (UA && UA.indexOf('android') > 0) || (WeexPlatform === 'android');
+    console.log(isAndroid);
+    */
+    /*const obj1 = {
+        a: 2
+    };
+    const obj2 = {
+        a: 3
+    };
+    function fn(a,c,d) {
+        console.log(this.a);
+        console.log(c + d + a);
+        console.log(c);
+        console.log(a);
+        console.log(d);
+    }
+    // fn.call(obj1,1,2,3); call(obj , ...arr)
+    // fn.apply(obj2,[3,4,5]); call(obj , arr)
+    // fn.bind(obj2 , 4 , 6 , 7)();//不会主动执行
+    // setTimeout(fn.bind(obj2, 2 ,3 ,4) , 1000);//定时器调用bind
+    // setTimeout("fn.call(obj1,1,2,3)" , 1000);
+    // bind的兼容
+
+
+    const example = [1,2,3,4,5];
+    example.splice(2,0,'s');//删除零个项, 并在二的索引处插入's'
+    // console.log(example);//[1, 2, "s", 3, 4, 5]
+    const copy = example.splice(2,1);
+    // console.log(copy);//["s"]
+    const copy2 = example.splice(2,2,6);
+    // console.log(copy2);//[3,4]
+
+    function shiftArray(arr){
+        return arr.splice(0,1);
+    }
+    let a = [1,2,3];
+    let b = a.shift();
+    let c = shiftArray(a);
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    */
+    /*let arr = [1,2,3,4,5];
+    const a = arr.slice();
+    console.log(a);//arr
+    const b = arr.slice(-1);
+    console.log(b);//[5]
+    const c = arr.slice(0,-1);
+    console.log(c);//[1,2,3,4]
+    function conver2Array() {
+        return Array.prototype.slice.call(arguments);
+    }
+    const arr1 = conver2Array(1,2,3);
+    console.log(arr1);
+    let str ="1234123";
+    function isPalindrome(str) {
+        return str.split('').reverse();
+    }
+
+    console.log([...isPalindrome(str)]);
+    */
+    /*Splice()用于添加或删除数组中的元素，它将修改原
+    始数组。Slice()用于从数组中提取元素并返回一个新数组
+    ，它不会修改原始数组。Split()用于通过分隔符将输入字符串转换
+    为数组，并且由于字符串是不可变的，因此不会修改原始字符串。使用拼
+    接时要小心，因为它可能会导致副作用。
+     */
+    /*[1].slice();//实例对象
+    Array.isArray([2]);//构造函数
+    Array.prototype.add = function (){
+        return 1;
+    };
+    // prototype 原型
+    console.log(Array.prototype);
+    //this的指向再函数执行时判断
+
+    Function.prototype.bind = function() {
+
+        var bindThis = arguments[0];
+        var arg = Array.prototype.slice.call(arguments,1);
+        var that = this;
+
+        return function (){
+            that.apply(bindThis ,arg);
+        };
+
+    };
+    function fn(a) {
+        console.log(this);
+    }
+    fn.bind(null)();
+    */
+</script>
+<script></script>
+</body>
+</html>

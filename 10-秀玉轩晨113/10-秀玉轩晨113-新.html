@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="Author" content="">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif;}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6,ul,input{margin:0;padding:0;}
+        li{list-style:none;}
+        img{vertical-align: bottom;}
+        .wrap{
+            width: 500px;
+            padding: 30px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+        }
+        ul li{
+            height: 50px;
+            padding-top: 20px;
+            border-bottom: 1px solid #f3f3f3;
+        }
+        ul li input{
+            width: 430px;
+            border: 0;
+            outline: none;
+            font-size: 20px;
+        }
+        ul li button{
+            width: 60px;
+            height: 30px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        ul li button.edit{
+            background-color: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+    <body>
+        <div class="wrap">
+            <ul>
+                <li>
+                    <input type="text" value="我" readonly />
+                    <button>修改</button>
+                </li>
+                <li>
+                    <input type="text" value="是最" readonly/>
+                    <button>修改</button>
+                </li>
+                <li>
+                    <input type="text" value="最最好的" readonly/>
+                    <button>修改</button>
+                </li>
+            </ul>
+        </div>
+
+	<script>
+		var oInput = document.getElementsByTagName('input'),
+			oButton = document.getElementsByTagName('button'),
+			len = oButton.length;
+
+			for (var i = 0; i < len; i++) {
+				oButton[i].index = i;
+				oButton[i].onclick = function(){
+					if (this.className) {
+						this.className="";
+						this.innerText="修改";
+						oInput[this.index].setAttribute("readonly","true");
+					} else {
+						this.className="edit";
+						this.innerText = "确认";
+						oInput[this.index].removeAttribute("readonly");
+					}
+				}
+
+			}
+
+	</script>
+
+</body>
+</html>

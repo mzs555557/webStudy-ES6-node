@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+        sub {
+            vertical-align: text-bottom
+        }
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+        section{
+            position: relative;
+            width: 500px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid black;
+        }
+        #aside{
+            display: inline-block;
+            width: 80px;
+            height: 150px;
+            margin-top: 20%;
+
+        }
+        #aside div{
+            height: 20%;
+            margin-top: 20%;
+            text-align: center;
+            line-height: 2em;
+            color: #fff;
+            border: 1px solid black;
+            background-color: rgba(0,0,0,.5);
+            cursor: pointer;
+        }
+        #aside div:hover{
+            background-color: rgba(123,123,56,.5);
+        }
+        .content{
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80%;
+            height: 400px;
+            margin-right: 0;
+            border: 1px solid black;
+        }
+        .active{
+            display: block !important;
+        }
+        /*区块的布局,下方为图片的布局*/
+        .food li , .car li , .scenery li{
+            display: none;
+            width: 100%;
+            height: 400px;
+        }
+        .content li img{
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+        }
+        .index{
+            display: none;
+        }
+        .no{
+            display: none;
+        }
+        .on{
+            position: relative;
+            z-index: 4;
+            display: flex;
+            width: 250px;
+            height: 30px;
+            margin: -10% auto;
+            justify-content: space-around;
+        }
+        .on li{
+            display: block;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            background-color: rgba(0,0,0,.5);
+            cursor: pointer;
+        }
+        .on li:hover{
+            background-color: rgba(123,0,56,.5);
+        }
+    </style>
+</head>
+<body>
+
+<section>
+    <aside id="aside">
+        <div>美食</div>
+        <div>赛车</div>
+        <div>其它</div>
+    </aside>
+
+    <div class="content">
+        <ul class="car">
+            <li class="active"><img src="images/1.jpg" alt=""></li>
+            <li><img src="images/2.jpg" alt=""></li>
+            <li><img src="images/3.jpg" alt=""></li>
+            <li><img src="images/4.jpg" alt=""></li>
+        </ul>
+
+        <ol class="index on">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ol>
+    </div>
+
+    <div class="content">
+        <ul class="food">
+            <li><img src="images/m1.jpg" alt=""></li>
+            <li><img src="images/m2.jpg" alt=""></li>
+            <li><img src="images/m3.jpg" alt=""></li>
+            <li><img src="images/m4.jpg" alt=""></li>
+            <li><img src="images/m5.jpg" alt=""></li>
+        </ul>
+        <ol class="index">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ol>
+    </div>
+
+    <div class="content">
+        <ul class="scenery">
+            <li><img src="images/s1.jpg" alt=""></li>
+            <li><img src="images/s2.jpg" alt=""></li>
+            <li><img src="images/s3.jpg" alt=""></li>
+        </ul>
+        <ol class="index">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ol>
+    </div>
+
+</section>
+
+
+
+<script type="text/javascript">
+    (function(){
+        var oAside = document.getElementById('aside'),//获取侧边栏的id
+            aDiv = document.getElementsByTagName('div'),//获取图片的大盒子
+            oContent = document.getElementsByClassName('content'),//获取图片的内容
+            aIndex = document.getElementsByClassName('index');//获取图片的标记
+        for(var i = 0;i < oContent.length;i++) {
+
+            let aUl = oContent[i].getElementsByTagName('ul')[0],
+                aLi = aUl.getElementsByTagName('li');
+            aUl.index = i;
+            aDiv[i].onclick = function(){
+                for (var j = 0 ;j<oContent.length;j++){
+                        let aUl2= oContent[j].getElementsByTagName('ul')[0],
+                            aLi2 = aUl2.getElementsByTagName('li')
+                        ;
+                        if (j===aUl.index){
+                            aLi[0].className= "active";
+                            aIndex[j].className = "index on";
+                            oContent[j].className= "content";
+                            var aImg = aIndex[j].getElementsByTagName('li');
+                            for (let k = 0;k<aImg.length;k++){
+                                  aImg[k].onclick = function(){
+                                      for (let m = 0;m<aImg.length;m++ ){
+                                          if (m===k){
+                                              aLi[k].className = "active";
+                                          } else{
+                                              aLi[m].className ="";
+                                          }
+                                      }
+                                  }
+                            }
+                        }else{
+                            aLi2[0].className="";
+                            aIndex[j].className = "index";
+                            oContent[j].className="content no";
+                        }
+                }
+
+            }
+
+        }
+    })();
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-36期Js</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Microsoft YaHei, serif;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #box {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            margin: 50px auto;
+        }
+
+        div {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pic ul {
+            position: absolute;
+            width: 1000%;
+            height: 100%;
+        }
+
+        .pic ul li {
+            float: left;
+            width: 500px;
+            height: 100%;
+            font-size: 100px;
+            text-align: center;
+            line-height: 300px;
+            color: #fff;
+        }
+
+        .pic ul li:nth-child(1) {
+            background: red;
+        }
+
+        .pic ul li:nth-child(2) {
+            background: pink;
+        }
+
+        .pic ul li:nth-child(3) {
+            background: green;
+        }
+
+        .pic ul li:nth-child(4) {
+            background: skyblue;
+        }
+
+        .pic ul li:nth-child(5) {
+            background: burlywood;
+        }
+
+        .tab {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 500px;
+            height: 30px;
+
+        }
+
+        .tab ul {
+
+            width: 100px;
+            margin: 0 auto;
+            height: 10px;
+            padding: 5px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, .5);
+        }
+
+        .tab li {
+            float: left;
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        .tab li.on {
+            background: #f60;
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            width: 25px;
+            height: 50px;
+            margin-top: -25px;
+            background: rgba(0, 0, 0, .5);
+            cursor: pointer;
+            text-align: center;
+            line-height: 50px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .right {
+            right: 0;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script>
+        $(function() {
+
+           /* const $pic = $(".pic ul")
+            const $tab = $(".tab li")
+            const widthVal = $(".pic li").width()
+            const $prev = $(".left")
+            const $next = $(".right")
+
+            let index = 0
+
+            let timer = null
+
+            $tab.click(function(){
+                // 当前加 on
+                $(this).addClass("on")
+                // 之前的 去掉on
+                $tab.eq(index).removeClass("on")
+
+                // 需要当前this在兄弟里的序号
+                index = $(this).index()
+
+                $pic.animate({
+                    left: -index * widthVal
+                }, 500)
+            })
+
+            $next.click(function(){
+                // 把之前的名字干掉
+                $tab.eq(index).removeClass('on')
+                index++
+                index %= $tab.length
+                $tab.eq(index).addClass("on")
+                $pic.animate({
+                    left: -index * widthVal
+                }, 500)
+            })
+
+
+
+            $prev.click(function(){
+                // 把之前的名字干掉
+                $tab.eq(index).removeClass('on')
+                index--
+                if(index < 0)index = $tab.length - 1
+                $tab.eq(index).addClass("on")
+                $pic.animate({
+                    left: -index * widthVal
+                }, 500)
+            })
+
+            auto()
+
+            $('#box').hover(() => {
+                clearInterval(timer)
+            }, auto)
+
+            function auto(){
+                clearInterval(timer)
+                timer = setInterval(function(){
+                    $next.trigger("click")
+                }, 1000)
+            }
+            */
+            const
+                    tab = $(".tab li"),
+                    width = $(".pic li").width(),
+                    left = $(".left"),
+                    right = $(".right");
+            let index = 0,
+                timer = null;
+
+            tab.click (function () {
+               $(this).addClass("on");
+               tab.eq(index).removeClass("on");
+               index = $(this).index();
+               $(".pic ul").animate({
+                   left : -index * width
+               },500)
+            });
+
+            left.click(function (){
+                tab.eq(index).removeClass("on");
+                index--;
+                if (index < 0) index = 4;
+                tab.eq(index).addClass("on");
+                $(".pic ul").animate({
+                    left : -index * width
+                },300)
+            });
+
+            right.click(function () {
+                tab.eq(index).removeClass("on");
+                index++;
+                index %= 5;
+                tab.eq(index).addClass("on");
+                $(".pic ul").animate({
+                    left : -index * width
+                },300)
+            });
+            auto();
+            $("#box").mouseenter(function () {
+                clearInterval(timer);
+            });
+            function auto() {
+                timer = setInterval(function () {
+                    right.trigger("click");
+                },1000)
+            }
+
+        })
+
+
+    </script>
+</head>
+
+<body>
+<div id="box">
+    <div class="pic">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+    <div class="tab">
+        <ul>
+            <li class="on"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="btn left">&lt;</div>
+    <div class="btn right">&gt;</div>
+</div>
+</body>
+
+</html>

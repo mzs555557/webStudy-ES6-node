@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="Author" content="Fly">
+        <title>Title</title>
+        <style>
+            *{ margin: 0; padding: 0; font-family:Microsoft yahei,serif;}
+            li{ list-style:none;}
+            #box{
+                position: relative;
+                width: 800px;
+                height: 800px;
+                margin: 0 auto;
+            }
+            #box .data,.kuang,.piecess,.movepieces{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #box .data{
+                z-index: 21;
+            }
+            #box .float{
+                float: left;
+                width: 40px;
+                height: 40px;
+                box-shadow: 1px 1px 6px rgba(0,0,0,.6);
+            }
+
+            #box .kuang .show{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                background-color: pink;
+                opacity: 0.3;
+            }
+            #box .pieces .pieces-coor{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 30px;
+                height: 30px;
+                box-shadow: 1px 1px 6px rgba(0,0,0,.6);
+                border-radius: 100%;
+            }
+            #box .movepieces .move{
+                opacity: 0;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 20px;
+                height: 20px;
+                background-color: #350606;
+                border-radius: 100%;
+            }
+            #box .over{
+                display: none;
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+                width: 150px;
+                height: 150px;
+                border-radius: 10px;
+                background-color: pink;
+                z-index: 31;
+                box-sizing: border-box;
+                padding: 20px;
+                transition: 1s;
+            }
+            #box .over h1{
+                width: 100%;
+                padding: 8px 0;
+                border-radius: 10px;
+                background-color: red;
+                font-size: 20px;
+                text-align: center;
+                box-shadow: 1px 1px 6px rgba(0,0,0,.6);
+            }
+            #box .over p{
+                width: 100%;
+                margin-top: 30px;
+                padding: 8px 0;
+                border-radius: 10px;
+                background-color: red;
+                text-align: center;
+                font-size: 15px;
+                box-shadow: 1px 1px 6px rgba(0,0,0,.6);
+                font-weight: bold;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <!-- 存储方块 -->
+            <div class="data"></div>
+            <!-- 移动红点 -->
+            <div class="kuang">
+                <div class="show"></div>
+            </div>
+            <!-- 存储棋子 -->
+            <div class="pieces">
+
+            </div>
+            <!-- 跟随鼠标移动的棋子 -->
+            <div class="movepieces">
+                <div class="move"></div>
+            </div>
+            <div class="over">
+                <h1>游戏结束</h1>
+                <p>从新开始</p>
+            </div>
+        </div>
+        <script src="js/index.js"></script>
+    </body>
+</html>

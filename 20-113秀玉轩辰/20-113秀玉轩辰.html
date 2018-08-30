@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+ 莫斯科时间: <p></p>
+ 北京的时间:<p></p>
+ 东京的时间: <p></p>
+<script>
+
+   setInterval(function(){
+       var date = new Date(),
+           localTime = date.getTime(),
+           localOffset = date.getTimezoneOffset()*60000,
+           utc = localTime + localOffset,
+           offset1 = 2,
+           calctime1 = utc +(3600000*offset1),
+           nowDate1 = new Date(calctime1),
+           offset2 = 8,
+           calctime2 = utc + (3600000*offset2),
+           nowDate2 = new Date(calctime2),
+           offset3 = 9,
+           calctime3 = utc + (3600000*offset3),
+           nowDate3 = new Date(calctime3),
+           aP = document.getElementsByTagName('p')
+       ;
+            aP[0].innerHTML = nowDate1.toLocaleString();
+            aP[1].innerHTML = nowDate2.toLocaleString();
+            aP[2].innerHTML = nowDate3.toLocaleString();
+
+   },1000);
+
+
+
+</script>
+
+</body>
+</html>

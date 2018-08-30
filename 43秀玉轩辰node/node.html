@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+<div>
+
+</div>
+<script>
+
+    /**
+     * @node后台讲解
+     * @nodeJS
+     * @构建在chromv8引擎上的javascript运行环境
+     * @node与chrom区别
+     * @架构相同事件驱动来服务页面交互
+     * @没有 HTML,webkit,显卡等等UI技术的支持
+     * @客户端前端
+     * @param
+     *
+     * @进程与线程的
+     */
+    /**
+     * I/o密集型
+     *
+     */
+    // $.ajax({
+    //     method : "POST",
+    //     success (msg) {
+    //         console.log(msg);
+    //     },
+    //     error () {
+    //
+    //     }
+    // });
+    /**
+     * @npm命令
+     * npm init 初始化项目环境
+     *
+     * npm init -y 一路生成
+     * npm install 安装模块
+     * npm i -g webpack   全局安装
+     * npm i -save koa
+     * 安装之后需要入口文件
+     * 接受包 const Koa = require('koa');
+     * const app = new Koa;
+     * dependencies 生产环境所需模块
+     * --save 生产环境
+     * npm install --save-dev koa 只是开发环境使用
+     *
+     * npm publish 上传
+     * npm i -S + 包名
+     *
+     * npm login 注册
+     */
+    $(document).click(()=>{
+        $.ajax({
+            method : "POST",
+            url : 'http://localhost:3000',
+            success(msg) {
+                console.log(msg);
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

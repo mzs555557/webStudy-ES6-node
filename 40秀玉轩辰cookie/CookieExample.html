@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+    </style>
+</head>
+<body>
+<p id="last"></p>
+<p id="now"></p>
+<script>
+
+    /*
+    console.log(new Date().toDateString());
+    console.log(new Date().toString());
+    console.log(new Date().toUTCString());
+    console.log(new Date().toLocaleDateString());
+    console.log(new Date().toLocaleString());
+    */
+
+
+
+    const getCookie = attr =>{
+        const arr = document.cookie.match(new RegExp('\\b' + attr + "=([^;]+)(;|$)"));
+        return arr ? arr[1] : "";
+    };//获取cookie
+
+    const setCookie = (obj , time = 0) => {
+        const timer = new Date(Date.now() + time * 100000000).toUTCString();
+        for (let key in obj) {
+            document.cookie = `${key}=${obj[key]};expires=${timer}`;
+        }
+    };//设置cookie
+    const Delcookie = attr => {
+        let obj = {};
+        obj[attr] = "";
+        set(obj , -1);
+    };//删除cookie
+
+    const lastTime = getCookie("lastTime");
+
+    if (lastTime) {
+        //非第一次登陆
+        last.innerHTML = "您上次的访问时间是" + lastTime;
+    } else {
+        //第一次登录
+        last.innerHTML = "欢迎大爷光临, 打野第一次";
+
+    }
+    const time = new Date().toLocaleString();
+
+    now.innerHTML = "本次登录时间为" +new Date().toLocaleString();
+
+    setCookie({"lastTime": time} , 60);
+
+
+
+
+</script>
+</body>
+</html>

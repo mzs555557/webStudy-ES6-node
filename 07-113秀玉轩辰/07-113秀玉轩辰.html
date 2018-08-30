@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+
+        #wrap{
+            width: 350px;
+            height: 650px;
+            margin: 50px auto;
+            border: 2px solid #E9E9E9;
+        }
+        #wrap li{
+            position: relative;
+            width: 100%;
+            height: 12%;
+            border-bottom: 2px solid #E9E9E9;
+        }
+        #wrap li div{
+            position: relative;
+            top: 40%;
+            bottom:5px;
+            left: 10px;
+            width: 20px;
+            height: 20px;
+            background: url("images/ck.png") 0 0 /100% no-repeat;
+            cursor: pointer;
+        }
+        #wrap li div.on{
+            background: url("images/cked.jpg") 0 0 /100% no-repeat;
+        }
+        #wrap li p{
+            text-align: center;
+            line-height: 45px;
+        }
+    </style>
+</head>
+<body>
+<ul id="wrap">
+    <li>
+        <div></div>
+        <p>Number1</p>
+    </li>
+    <li>
+        <div></div>
+        <p>Number2</p>
+    </li>
+    <li>
+        <div></div>
+        <p>Number3</p>
+    </li>
+    <li>
+        <div></div>
+        <p>Number4</p>
+    </li>
+    <li>
+        <div></div>
+        <p>Number5</p>
+    </li>
+    <li>
+        <div></div>
+        <p>Number6</p>
+    </li>
+    <li>
+        <div></div>
+        <p>Number7</p>
+    </li>
+    <li>
+        <div></div>
+        <p>全选</p>
+    </li>
+</ul>
+<script type="text/javascript">
+    var oUl  = document.getElementById('wrap'),
+        aDivs = oUl.getElementsByTagName('div'),
+        length = aDivs.length,
+        count = 0
+
+    ;
+    aDivs[length-1].bool = false;
+    for (var i = 0; i< length-1;i++) {
+        aDivs[i].bool = false;
+        aDivs[i].onclick = function () {
+            if (this.bool) {
+                count--;
+                this.className = '';
+                this.bool = !this.bool;
+            } else {
+                count++;
+                this.className = 'on';
+                this.bool = !this.bool;
+            }
+            if (count===length-1){
+                aDivs[length-1].className='on';
+                aDivs[length-1]=true;
+            }else{
+                aDivs[length-1].className='';
+                aDivs[length-1]=false;
+            }
+
+        };
+        aDivs[length-1].onclick = function(){
+            if (this.bool){
+                for (var k = 0;k < length;k++){
+                    aDivs[k].className='';
+                }
+                this.bool = !this.bool;
+            }else{
+                for (var j = 0;j < length;j++){
+                    aDivs[j].className='on';
+                }
+                this.bool = !this.bool;
+
+            }
+        }
+
+    }
+
+</script>
+</body>
+</html>

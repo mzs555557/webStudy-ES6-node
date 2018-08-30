@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal
+        }
+
+        q:before, q:after {
+            content: ''
+        }
+
+        abbr, acronym {
+            border: 0;
+            font-variant: normal
+        }
+
+        sup {
+            vertical-align: text-top
+        }
+
+        sub {
+            vertical-align: text-bottom
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        input, textarea, select {
+            *font-size: 100%
+        }
+
+        table{
+            width: 800px;
+            height: 500px;
+
+        }
+        table td{
+            text-align: center;
+            font-size: 40px;
+        }
+        table button{
+            font-size: 30px;
+        }
+        table td img{
+            width: 100px;
+            height: 100px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box" style=" width: 100px;
+                      height: 100px;
+                      opacity: 1;
+                      background-color: red;
+                      ">
+
+</div>
+<table border="2" id="wrap">
+    <tr>
+        <td class="sort1"><p class="sort">34</p> <img src="images/xh_img1.jpg" alt=""></td>
+        <td class="sort1"><p class="sort">65</p> <img src="images/xh_img2.jpg" alt=""></td>
+        <td class="sort1"><p class="sort">34</p> <img src="images/xh_img3.jpg" alt=""></td>
+        <td class="sort1"><p class="sort">78</p> <img src="images/xh_img4.jpg" alt=""></td>
+        <td class="sort1"><p class="sort">78</p> <img src="images/xh_img5.jpg" alt=""></td>
+    </tr>
+    <tr>
+        <td class="sort1"><p class="sort">14</p> <img src="images/xh_img6.jpg" alt=""></td>
+        <td class="sort1"><p class="sort">42</p> <img src="images/xh_img7.jpg" alt=""></td>
+        <td class="sort1"><p class="sort">89</p> <img src="images/xh_img8.jpg" alt=""></td>
+        <td class="sort1"><p class="sort">37</p> <img src="images/xh_img9.png" alt=""></td>
+        <td class="sort1"><p class="sort">91</p> <img src="images/xh_img11.jpg" alt=""></td>
+    </tr>
+    <tr>
+        <td colspan="3"><button class="order">升序</button></td>
+        <td colspan="2"><button class="order">降序</button></td>
+
+    </tr>
+
+
+    <script type="text/javascript">
+        box.onclick = function fn() {
+            setTimeout(function () {
+               box.style.opacity -= 0.01;
+               setTimeout(fn);
+            },1)
+        };
+
+    /*
+        var arr = [10,29,4,5,7,23,32,10];
+
+        var newArr = arr.filter(function(item,index,arr){
+
+            console.log(item+"  "+index+"  "+arr);
+
+        });
+
+        console.log(newArr);
+
+
+        var json ='{"name":"乌拉","age":98}';
+
+        var json1 = "[{\"name\":\"阿飞\"},{\"name\":\"wula\"}]";
+
+    */
+    var arr = [20,12,3,4,556,6];
+    arr.sort(function(num1,num2){
+       return num1-num2;
+    });
+    console.log(Array.isArray(arr));
+
+
+    var oWrap = document.getElementById('wrap'),
+        aSort = document.getElementsByClassName('sort'),
+        aSort1 = document.getElementsByClassName('sort1'),
+        aButton = oWrap.getElementsByClassName('order');
+
+
+    (function(){
+        aButton[0].onclick = function () {
+            for (let i = 0; i < aSort.length; i++) {
+                for (let j = aSort.length - 1; j > i; j--) {
+                    if (aSort[j].innerHTML < aSort[j - 1].innerHTML) {
+                        var new_ = aSort1[j - 1].innerHTML;
+                        aSort1[j - 1].innerHTML = aSort1[j].innerHTML;
+                        aSort1[j].innerHTML = new_;
+                    }
+                }
+            }
+            aButton[1].onclick = function () {
+                for (let i = 0; i < aSort.length; i++) {
+                    for (let j = aSort.length - 1; j > i; j--) {
+                        if (aSort[j].innerHTML > aSort[j - 1].innerHTML) {
+                            var new_ = aSort1[j - 1].innerHTML;
+                            aSort1[j - 1].innerHTML = aSort1[j].innerHTML;
+                            aSort1[j].innerHTML = new_;
+                        }
+                    }
+                }
+            }
+            };
+        })();
+
+
+</script>
+</body>
+</html>
