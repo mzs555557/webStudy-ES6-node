@@ -16,10 +16,12 @@ app.use(async ctx => {
                     $('#subject_list > .subject-list > .subject-item').each((i, v) => {
                         let $v = $(v);
                         let obj = {
+
                             author: $v.find('.info > h2 > a').prop('title').trim(),
                             Introduce: $v.find('.info > p').text().trim(),
                             evaluation: $v.find('.rating_nums').text().trim(),
                             url: $v.find('.pic > .nbg').prop('href').trim()
+
                         };
                         arr.push(obj);
                         console.log(num);

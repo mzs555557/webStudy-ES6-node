@@ -1,0 +1,25 @@
+doctype html
+html
+    head
+        title
+        meta(charset="utf8")
+    body
+        // - var flag = flag
+        case flag
+            when 0
+                p 无朋友
+            when 2
+                p 有一个朋友
+            default
+                p 有#{flag}朋友
+        - for ( let i = 0; i < 4; i++ )
+            li #{i}
+        - var arr = ["a" , "b" , "c"]
+        each item in arr
+            li= item
+        button(
+        type='checkbox'
+        name='agreement'
+        checked
+        ) 你妹哦
+        | 可以的
