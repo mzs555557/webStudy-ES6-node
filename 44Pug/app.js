@@ -3,6 +3,7 @@
  * @type {module.Application|*}
  * @author Ma ZS
  * @version v_1.0
+ *
  */
 
 const Koa = require('koa');

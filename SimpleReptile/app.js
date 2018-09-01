@@ -23,6 +23,7 @@ app.use(async ctx => {
                             url: $v.find('.pic > .nbg').prop('href').trim()
 
                         };
+
                         arr.push(obj);
                         console.log(num);
                         resolve(JSON.stringify(arr));
