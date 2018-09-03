@@ -1,9 +1,11 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Administrator">
     <words>
+      <w>anim</w>
       <w>authcode</w>
       <w>baidu</w>
       <w>biliurl</w>
+      <w>blogproject</w>
       <w>blueviolet</w>
       <w>boxclick</w>
       <w>boxdata</w>
@@ -17,6 +19,7 @@
       <w>coor</w>
       <w>coord</w>
       <w>cproject</w>
+      <w>crypto</w>
       <w>dashuaibi</w>
       <w>definult</w>
       <w>douga</w>
@@ -28,6 +31,7 @@
       <w>fengyu</w>
       <w>fullname</w>
       <w>grenier</w>
+      <w>hmac</w>
       <w>ictxt</w>
       <w>imooc</w>
       <w>inet</w>
@@ -38,6 +42,7 @@
       <w>juedg</w>
       <w>keypress</w>
       <w>keyup</w>
+      <w>layui</w>
       <w>mousedown</w>
       <w>mouseenter</w>
       <w>mouseleave</w>
@@ -49,6 +54,7 @@
       <w>movepieces</w>
       <w>mvvm</w>
       <w>nikename</w>
+      <w>nodejs</w>
       <w>nums</w>
       <w>obox</w>
       <w>odiv</w>
@@ -70,12 +76,16 @@
       <w>photoshop</w>
       <w>popmove</w>
       <w>regist</w>
+      <w>sess</w>
       <w>sigusr</w>
       <w>substration</w>
       <w>superagent</w>
       <w>thro</w>
       <w>transitionend</w>
       <w>typefn</w>
+      <w>unselect</w>
+      <w>upbit</w>
+      <w>vercode</w>
       <w>versionchange</w>
       <w>wula</w>
     </words>

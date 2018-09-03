@@ -16,5 +16,8 @@
     <orderEntry type="library" name="vue" level="application" />
     <orderEntry type="library" name="vue.common" level="application" />
     <orderEntry type="library" name="vue.esm.browser" level="application" />
+    <orderEntry type="library" name="pug" level="application" />
+    <orderEntry type="library" name="ExtJS" level="application" />
+    <orderEntry type="library" name="jque" level="application" />
   </component>
 </module>
