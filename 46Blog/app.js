@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const Static = require('koa-static');
 const views = require('koa-views');
+const compress = require('koa-compress');
 const router = require('./routers/router');
 const body = require('koa-body');
 const logger = require('koa-logger');
@@ -18,16 +19,25 @@ const CONFIG = {
     /** Warning: If a session cookie is stolen, this cookie will never expire */
     maxAge: 36e5,
     // autoCommit: true, /** (boolean) automatically commit headers (default true) */
-    overwrite: true, /** (boolean) can overwrite or not (default true) */
-    httpOnly: true, /** (boolean) httpOnly or not (default true) */
-    signed: true, /** (boolean) signed or not (default true) */
-    rolling: false, /**刷新时间 (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
+    overwrite: true,
+    /** (boolean) can overwrite or not (default true) */
+    httpOnly: true,
+    /** (boolean) httpOnly or not (default true) */
+    signed: true,
+    /** (boolean) signed or not (default true) */
+    rolling: false,
+    /**刷新时间 (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
     renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
 };
 
 // const router = new Router;
+// 压缩模块
+app.use(compress({
+    threshold: 2048,
+    flush: require('zlib').Z_SYNC_FLUSH
+}));
 //配置session
-app.use(session(CONFIG , app));
+app.use(session(CONFIG, app));
 //注册日志模块
 app.use(logger());
 //配置koa-body处理请求数据
@@ -44,3 +54,34 @@ app.use(router.routes()).use(router.allowedMethods());
 app.listen(3003, () => {
     console.log("成功 , 3003端口");
 });
+
+//创建管理员用户
+
+{
+
+    const {db} = require('./Schema/config');
+    const UserSchema = require('./Schema/user');
+    const encrypt = require('./util/encrypt');
+    const User = db.model('users', UserSchema);
+
+    User
+        .find({username: 'admin'})
+        .then(data => {
+            if (data.length === 0) {
+                new User({
+                    username: 'admin',
+                    password: encrypt('admin'),
+                    role: 666,
+                    commentNum: 0,
+                    articleNum: 0
+                })
+                    .save()
+                    .then(data => {
+                        console.log(data , "管理员资料" , data.username )
+                    })
+                    .catch(err => {
+                        console.log("管理员帐号出错" , err);
+                    })
+            }
+        })
+}

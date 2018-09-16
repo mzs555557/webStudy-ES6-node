@@ -2,6 +2,7 @@
   <dictionary name="Administrator">
     <words>
       <w>anim</w>
+      <w>artid</w>
       <w>authcode</w>
       <w>baidu</w>
       <w>biliurl</w>
@@ -42,7 +43,11 @@
       <w>juedg</w>
       <w>keypress</w>
       <w>keyup</w>
+      <w>layedit</w>
+      <w>laypage</w>
       <w>layui</w>
+      <w>maxnum</w>
+      <w>mongo</w>
       <w>mousedown</w>
       <w>mouseenter</w>
       <w>mouseleave</w>
@@ -52,6 +57,7 @@
       <w>movepie</w>
       <w>movepiece</w>
       <w>movepieces</w>
+      <w>multer</w>
       <w>mvvm</w>
       <w>nikename</w>
       <w>nodejs</w>
@@ -80,6 +86,8 @@
       <w>sigusr</w>
       <w>substration</w>
       <w>superagent</w>
+      <w>templet</w>
+      <w>textarea</w>
       <w>thro</w>
       <w>transitionend</w>
       <w>typefn</w>

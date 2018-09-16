@@ -1,18 +1,21 @@
 //连接数据库 倒出
 const mongoose = require('mongoose');
-const db = mongoose.createConnection("mongodb://localhost:27017/blogproject", {
-    useNewUrlParse: true
-});
-mongoose.promise = global.promise;
 //取出Schema
+mongoose.Promise = global.Promise;
 
-// 连接失败
-db.on("error", () => {
-    console.log("数据库连接失败");
+mongoose.connect("mongodb://127.0.0.1:27017/blogproject" ,{
+    useNewUrlParser: true
 });
+const db = mongoose.connection;
 //连接成功
-db.on("open", () => {
-    console.log("连接成功");
+
+db.on("connected", ()=>{
+    console.log("mongodb数据库连接成功")
+});
+// 连接失败
+
+db.on("error", function (error) {
+    console.log("连接失败" ,error);
 });
 const Schema = mongoose.Schema;
 module.exports = {

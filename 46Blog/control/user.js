@@ -1,8 +1,10 @@
-const {db} = require("../Schema/config");
-const UserSchema = require('../Schema/user');
+
 const encrypt = require('../util/encrypt');
 
-const User = db.model("users", UserSchema);
+const Article = require('../Models/article');
+const User = require('../Models/user');
+const Comment = require('../Models/comment');
+
 //用户注册
 exports.reg = async ctx => {
     const user = ctx.request.body;//注册的post数据
@@ -18,7 +20,9 @@ exports.reg = async ctx => {
             //用户名不存在 需要存在数据库
             let _user = new User({
                 username: username,
-                password: encrypt(password)
+                password: encrypt(password),
+                commentNum: 0,
+                articleNum: 0
             });
             _user.save((err, data) => {
                 if (err) {
@@ -32,7 +36,6 @@ exports.reg = async ctx => {
         .then(async data => {
             if (data) {
                 //注册成功
-
                 await ctx.render("isOk", {
                     status: "注册成功"
                 });
@@ -91,7 +94,9 @@ exports.login = async ctx => {
             });
             ctx.session = {
                 username,
-                uid: data[0]._id
+                uid: data[0]._id,
+                avatar: data[0].avatar,
+                role: data[0].role
             };
             await ctx.render('isOk', {
                 status: "登录成功"
@@ -107,9 +112,12 @@ exports.login = async ctx => {
 exports.keepLog = async (ctx, next) => {
     if (ctx.session.isNew) {
         if (ctx.cookies.get("username")) {
+            let uid = ctx.cookies.get('uid');
+            const avatar = await User.findById(uid).then(data => {data.avatar});
             ctx.session = {
                 username: ctx.cookies.get('username'),
-                uid: ctx.cookies.get('uid')
+                uid,
+                avatar
             }
         }
     }
@@ -125,4 +133,26 @@ exports.logout = async ctx => {
     });
     //重定向
     ctx.redirect("/")
+};
+//头像上传
+exports.upload = async ctx => {
+    const filename = ctx.req.file.filename;
+
+    let data ={};
+    User.updateOne({_id: ctx.session.uid}, {$set: {avatar: "/avatar/" + filename}}, (err , res) => {
+       if (err) {
+           data = {
+               status: 0,
+               message: "上传失败"
+           }
+       } else {
+           data = {
+               status: 1,
+               message: "上传成功"
+           };
+           console.log(res);
+       }
+        ctx.body = data;
+    });
+
 };
